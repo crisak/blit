@@ -16,9 +16,57 @@
   --color-text-primary: #ffffff;
   --color-text-secondary: #a0a0a0;
   --color-text-muted: #666666;
+
+  /* Font Families */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
 
-body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+@layer base {
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+}
+
+@layer utilities {
+  .text-accent-spray {
+    color: var(--color-accent-spray);
+  }
+
+  .text-accent-pink {
+    color: var(--color-accent-pink);
+  }
+
+  .text-accent-cyan {
+    color: var(--color-accent-cyan);
+  }
+
+  .text-accent-yellow {
+    color: var(--color-accent-yellow);
+  }
+
+  .bg-primary {
+    background-color: var(--color-bg-primary);
+  }
+
+  .bg-secondary {
+    background-color: var(--color-bg-secondary);
+  }
+
+  .bg-tertiary {
+    background-color: var(--color-bg-tertiary);
+  }
+
+  .text-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+  }
 }

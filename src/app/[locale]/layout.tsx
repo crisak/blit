@@ -20,8 +20,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: 'Portfolio - Street Artist',
-  description: 'Urban art portfolio and shop',
+  title: 'Blito',
+  description: 'Portfolio y tienda',
 };
 
 export function generateStaticParams() {

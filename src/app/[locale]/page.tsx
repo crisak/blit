@@ -5,10 +5,10 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-6xl font-heading font-extrabold text-accent-spray mb-4">
+      <h1 className="text-6xl font-extrabold mb-4 text-accent-spray font-heading">
         {t('title')}
       </h1>
-      <p className="text-xl text-text-secondary">{t('subtitle')}</p>
+      <p className="text-xl text-secondary">{t('subtitle')}</p>
     </main>
   );
 }
