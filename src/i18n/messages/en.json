@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Home",
+    "gallery": "Gallery",
+    "shop": "Shop",
+    "about": "About Me",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Urban Art",
+    "subtitle": "Explore my collection of street art works",
+    "cta": {
+      "gallery": "View Gallery",
+      "shop": "Go to Shop"
+    }
+  },
+  "gallery": {
+    "title": "My Gallery",
+    "filters": {
+      "category": "Category",
+      "technique": "Technique",
+      "location": "Location",
+      "color": "Color",
+      "size": "Size",
+      "clear": "Clear filters"
+    }
+  },
+  "shop": {
+    "title": "Shop",
+    "addToCart": "Add to Cart",
+    "soldOut": "Sold Out",
+    "limitedEdition": "Limited Edition",
+    "price": "Price"
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  }
+}

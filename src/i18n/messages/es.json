@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "gallery": "Galería",
+    "shop": "Tienda",
+    "about": "Sobre Mí",
+    "contact": "Contacto"
+  },
+  "home": {
+    "title": "Arte Urbano",
+    "subtitle": "Explora mi colección de obras de street art",
+    "cta": {
+      "gallery": "Ver Galería",
+      "shop": "Ir a la Tienda"
+    }
+  },
+  "gallery": {
+    "title": "Mi Galería",
+    "filters": {
+      "category": "Categoría",
+      "technique": "Técnica",
+      "location": "Ubicación",
+      "color": "Color",
+      "size": "Tamaño",
+      "clear": "Limpiar filtros"
+    }
+  },
+  "shop": {
+    "title": "Tienda",
+    "addToCart": "Añadir al Carrito",
+    "soldOut": "Agotado",
+    "limitedEdition": "Edición Limitada",
+    "price": "Precio"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados"
+  }
+}

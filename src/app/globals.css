@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  /* Dark Base Colors */
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-tertiary: #2a2a2a;
+
+  /* Graffiti Accent Colors */
+  --color-accent-spray: #00ff88;
+  --color-accent-pink: #ff006e;
+  --color-accent-cyan: #00d9ff;
+  --color-accent-yellow: #ffbe0b;
+
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-text-muted: #666666;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
