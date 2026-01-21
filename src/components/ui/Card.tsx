@@ -1,22 +1,22 @@
-import type { HTMLAttributes, ReactNode } from 'react';
-import { cn } from '@/lib/utils/cn';
+import type { HTMLAttributes, ReactNode } from 'react'
+import { cn } from '@/lib/utils/cn'
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
-  variant?: 'default' | 'elevated' | 'outline';
-  hoverable?: boolean;
+  children: ReactNode
+  variant?: 'default' | 'elevated' | 'outline'
+  hoverable?: boolean
 }
 
 interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+  children: ReactNode
 }
 
 interface CardContentProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+  children: ReactNode
 }
 
 interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export function Card({
@@ -30,7 +30,7 @@ export function Card({
     default: 'bg-gray-900',
     elevated: 'bg-gray-900 shadow-xl shadow-black/30',
     outline: 'bg-transparent border border-gray-800',
-  };
+  }
 
   return (
     <div
@@ -49,18 +49,15 @@ export function Card({
     >
       {children}
     </div>
-  );
+  )
 }
 
 export function CardHeader({ children, className, ...props }: CardHeaderProps) {
   return (
-    <div
-      className={cn('px-5 py-4 border-b border-gray-800', className)}
-      {...props}
-    >
+    <div className={cn('px-5 py-4 border-b border-gray-800', className)} {...props}>
       {children}
     </div>
-  );
+  )
 }
 
 export function CardContent({ children, className, ...props }: CardContentProps) {
@@ -68,16 +65,13 @@ export function CardContent({ children, className, ...props }: CardContentProps)
     <div className={cn('p-5', className)} {...props}>
       {children}
     </div>
-  );
+  )
 }
 
 export function CardFooter({ children, className, ...props }: CardFooterProps) {
   return (
-    <div
-      className={cn('px-5 py-4 border-t border-gray-800 bg-gray-900/50', className)}
-      {...props}
-    >
+    <div className={cn('px-5 py-4 border-t border-gray-800 bg-gray-900/50', className)} {...props}>
       {children}
     </div>
-  );
+  )
 }

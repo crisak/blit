@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import { useState, type ReactNode } from 'react';
-import { SplashScreen } from '@/components/splash';
+import { useState, type ReactNode } from 'react'
+import { SplashScreen } from '@/components/splash'
 
 interface AppWrapperProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export function AppWrapper({ children }: AppWrapperProps) {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(true)
 
   return (
     <>
@@ -17,5 +17,5 @@ export function AppWrapper({ children }: AppWrapperProps) {
         {children}
       </div>
     </>
-  );
+  )
 }

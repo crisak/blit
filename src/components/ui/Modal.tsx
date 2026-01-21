@@ -1,67 +1,67 @@
-'use client';
+'use client'
 
-import { useEffect, useRef, type ReactNode, type KeyboardEvent } from 'react';
-import { cn } from '@/lib/utils/cn';
+import { useEffect, useRef, type ReactNode, type KeyboardEvent } from 'react'
+import { cn } from '@/lib/utils/cn'
 
 interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: ReactNode;
-  title?: string;
-  className?: string;
+  isOpen: boolean
+  onClose: () => void
+  children: ReactNode
+  title?: string
+  className?: string
 }
 
 export function Modal({ isOpen, onClose, children, title, className }: ModalProps) {
-  const modalRef = useRef<HTMLDivElement>(null);
-  const previousActiveElement = useRef<HTMLElement | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null)
+  const previousActiveElement = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     if (isOpen) {
-      previousActiveElement.current = document.activeElement as HTMLElement;
-      modalRef.current?.focus();
-      document.body.style.overflow = 'hidden';
+      previousActiveElement.current = document.activeElement as HTMLElement
+      modalRef.current?.focus()
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = '';
-      previousActiveElement.current?.focus();
+      document.body.style.overflow = ''
+      previousActiveElement.current?.focus()
     }
 
     return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
 
   useEffect(() => {
     const handleEscape = (e: globalThis.KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
-        onClose();
+        onClose()
       }
-    };
+    }
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [isOpen, onClose]);
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [isOpen, onClose])
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Tab') {
       const focusableElements = modalRef.current?.querySelectorAll<HTMLElement>(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      if (!focusableElements?.length) return;
+      )
+      if (!focusableElements?.length) return
 
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
+      const firstElement = focusableElements[0]
+      const lastElement = focusableElements[focusableElements.length - 1]
 
       if (e.shiftKey && document.activeElement === firstElement) {
-        e.preventDefault();
-        lastElement?.focus();
+        e.preventDefault()
+        lastElement?.focus()
       } else if (!e.shiftKey && document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement?.focus();
+        e.preventDefault()
+        firstElement?.focus()
       }
     }
-  };
+  }
 
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <div
@@ -121,5 +121,5 @@ export function Modal({ isOpen, onClose, children, title, className }: ModalProp
         <div className="p-5">{children}</div>
       </div>
     </div>
-  );
+  )
 }

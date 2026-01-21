@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
-import { Link, usePathname } from '@/i18n/routing';
-import { LanguageSwitcher } from './LanguageSwitcher';
-import { cn } from '@/lib/utils/cn';
+import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
+import { Link, usePathname } from '@/i18n/routing'
+import { LanguageSwitcher } from './LanguageSwitcher'
+import { cn } from '@/lib/utils/cn'
 
 const navLinks = [
   { href: '/', labelKey: 'home' },
@@ -12,45 +12,45 @@ const navLinks = [
   { href: '/shop', labelKey: 'shop' },
   { href: '/about', labelKey: 'about' },
   { href: '/contact', labelKey: 'contact' },
-] as const;
+] as const
 
 export function Header() {
-  const t = useTranslations('nav');
-  const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const t = useTranslations('nav')
+  const pathname = usePathname()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+      setIsScrolled(window.scrollY > 10)
+    }
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
+    setIsMobileMenuOpen(false)
+  }, [pathname])
 
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = ''
     }
 
     return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMobileMenuOpen]);
+      document.body.style.overflow = ''
+    }
+  }, [isMobileMenuOpen])
 
   const isActiveLink = (href: string) => {
     if (href === '/') {
-      return pathname === '/';
+      return pathname === '/'
     }
-    return pathname.startsWith(href);
-  };
+    return pathname.startsWith(href)
+  }
 
   return (
     <header
@@ -64,10 +64,7 @@ export function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 group transition-all duration-300"
-          >
+          <Link href="/" className="flex items-center gap-2 group transition-all duration-300">
             <span
               className={cn(
                 'text-2xl font-extrabold font-heading tracking-tight',
@@ -164,5 +161,5 @@ export function Header() {
         </div>
       </nav>
     </header>
-  );
+  )
 }

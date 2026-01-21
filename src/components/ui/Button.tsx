@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import { forwardRef, type ButtonHTMLAttributes } from 'react';
-import { cn } from '@/lib/utils/cn';
+import { forwardRef, type ButtonHTMLAttributes } from 'react'
+import { cn } from '@/lib/utils/cn'
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger'
+type ButtonSize = 'sm' | 'md' | 'lg'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  isLoading?: boolean;
+  variant?: ButtonVariant
+  size?: ButtonSize
+  isLoading?: boolean
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -33,13 +33,13 @@ const variantStyles: Record<ButtonVariant, string> = {
     'hover:bg-red-500 hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]',
     'active:scale-[0.98] active:bg-red-700',
   ].join(' '),
-};
+}
 
 const sizeStyles: Record<ButtonSize, string> = {
   sm: 'px-4 py-2 text-sm',
   md: 'px-5 py-2.5 text-base',
   lg: 'px-8 py-3.5 text-lg',
-};
+}
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -94,8 +94,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {children}
       </button>
-    );
+    )
   }
-);
+)
 
-Button.displayName = 'Button';
+Button.displayName = 'Button'

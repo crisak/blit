@@ -1,50 +1,50 @@
-'use client';
+'use client'
 
-import { useState, useRef, useEffect, useTransition } from 'react';
-import { useLocale } from 'next-intl';
-import { usePathname, useRouter } from '@/i18n/routing';
-import { cn } from '@/lib/utils/cn';
+import { useState, useRef, useEffect, useTransition } from 'react'
+import { useLocale } from 'next-intl'
+import { usePathname, useRouter } from '@/i18n/routing'
+import { cn } from '@/lib/utils/cn'
 
 const locales = [
   { code: 'es', label: 'ES', flag: '🇪🇸' },
   { code: 'en', label: 'EN', flag: '🇬🇧' },
-] as const;
+] as const
 
-type LocaleCode = (typeof locales)[number]['code'];
+type LocaleCode = (typeof locales)[number]['code']
 
 export function LanguageSwitcher() {
-  const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-  const [isPending, startTransition] = useTransition();
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale()
+  const router = useRouter()
+  const pathname = usePathname()
+  const [isPending, startTransition] = useTransition()
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
-  const currentLocale = locales.find((l) => l.code === locale) ?? locales[0];
+  const currentLocale = locales.find((l) => l.code === locale) ?? locales[0]
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
-    };
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   const handleLocaleChange = (newLocale: LocaleCode) => {
     if (newLocale === locale) {
-      setIsOpen(false);
-      return;
+      setIsOpen(false)
+      return
     }
 
-    setIsOpen(false);
+    setIsOpen(false)
     startTransition(() => {
-      router.replace(pathname, { locale: newLocale });
-      router.refresh();
-    });
-  };
+      router.replace(pathname, { locale: newLocale })
+      router.refresh()
+    })
+  }
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -121,5 +121,5 @@ export function LanguageSwitcher() {
         </div>
       )}
     </div>
-  );
+  )
 }

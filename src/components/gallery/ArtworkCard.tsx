@@ -1,14 +1,14 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Artwork } from "@/lib/types/artwork";
+import Image from 'next/image'
+import Link from 'next/link'
+import { Artwork } from '@/lib/types/artwork'
 
 interface ArtworkCardProps {
-  artwork: Artwork;
-  locale: string;
+  artwork: Artwork
+  locale: string
 }
 
 export default function ArtworkCard({ artwork, locale }: ArtworkCardProps) {
-  const mainImage = artwork.images[0];
+  const mainImage = artwork.images[0]
 
   return (
     <Link
@@ -18,7 +18,7 @@ export default function ArtworkCard({ artwork, locale }: ArtworkCardProps) {
       {/* Image Container */}
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
-          src={mainImage?.url || ""}
+          src={mainImage?.url || ''}
           alt={mainImage?.alt || artwork.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -52,12 +52,10 @@ export default function ArtworkCard({ artwork, locale }: ArtworkCardProps) {
         </div>
 
         <div className="flex items-center justify-between text-sm text-gray-300">
-          <span className="flex items-center gap-1">
-            📍 {artwork.location.city}
-          </span>
+          <span className="flex items-center gap-1">📍 {artwork.location.city}</span>
           <span>{artwork.year}</span>
         </div>
       </div>
     </Link>
-  );
+  )
 }

@@ -1,43 +1,43 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface SplashScreenProps {
-  onComplete?: () => void;
-  duration?: number;
+  onComplete?: () => void
+  duration?: number
 }
 
 export function SplashScreen({ onComplete, duration = 2500 }: SplashScreenProps) {
-  const t = useTranslations('splash');
-  const [phase, setPhase] = useState<'enter' | 'visible' | 'exit' | 'done'>('enter');
+  const t = useTranslations('splash')
+  const [phase, setPhase] = useState<'enter' | 'visible' | 'exit' | 'done'>('enter')
 
   useEffect(() => {
-    const enterDuration = 600;
-    const exitDuration = 400;
-    const visibleDuration = Math.max(0, duration - enterDuration - exitDuration);
+    const enterDuration = 600
+    const exitDuration = 400
+    const visibleDuration = Math.max(0, duration - enterDuration - exitDuration)
 
     const enterTimer = setTimeout(() => {
-      setPhase('visible');
-    }, enterDuration);
+      setPhase('visible')
+    }, enterDuration)
 
     const exitTimer = setTimeout(() => {
-      setPhase('exit');
-    }, enterDuration + visibleDuration);
+      setPhase('exit')
+    }, enterDuration + visibleDuration)
 
     const doneTimer = setTimeout(() => {
-      setPhase('done');
-      onComplete?.();
-    }, duration);
+      setPhase('done')
+      onComplete?.()
+    }, duration)
 
     return () => {
-      clearTimeout(enterTimer);
-      clearTimeout(exitTimer);
-      clearTimeout(doneTimer);
-    };
-  }, [duration, onComplete]);
+      clearTimeout(enterTimer)
+      clearTimeout(exitTimer)
+      clearTimeout(doneTimer)
+    }
+  }, [duration, onComplete])
 
-  if (phase === 'done') return null;
+  if (phase === 'done') return null
 
   return (
     <div
@@ -89,5 +89,5 @@ export function SplashScreen({ onComplete, duration = 2500 }: SplashScreenProps)
         }
       `}</style>
     </div>
-  );
+  )
 }
