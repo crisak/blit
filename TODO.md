@@ -17,7 +17,7 @@
 - [ ] **Fase 8:** Páginas Secundarias SSG (0/5 tareas)
 - [ ] **Fase 9:** API Routes (0/9 tareas)
 - [ ] **Fase 10:** Optimización Imágenes (0/9 tareas)
-- [ ] **Fase 11:** Animaciones GSAP (0/10 tareas)
+- [ ] **Fase 11:** Animaciones react-magic-motion (0/10 tareas)
 - [ ] **Fase 12:** SEO y Metadata (0/10 tareas)
 - [ ] **Fase 13:** Testing y QA (0/11 tareas)
 - [ ] **Fase 14:** Documentación (0/6 tareas)
@@ -46,10 +46,10 @@
 
 - [x] **1.3** Instalar dependencias principales
   ```bash
-  npm install next-intl gsap clsx tailwind-merge
+  npm install next-intl react-magic-motion clsx tailwind-merge
   ```
   - ✅ next-intl@4.7.0 instalado
-  - ✅ gsap@3.14.2 instalado
+  - ✅ react-magic-motion instalado
   - ✅ clsx@2.1.1 y tailwind-merge@3.4.0 instalados
 
 - [x] **1.4** Instalar dependencias de desarrollo
@@ -123,7 +123,7 @@
 - TypeScript 5.9.3
 - Tailwind CSS 4.1.18 (versión v4 con nueva sintaxis CSS)
 - next-intl 4.7.0
-- GSAP 3.14.2
+- react-magic-motion
 
 **Desafíos Resueltos:**
 1. **Permisos pnpm:** No se pudo habilitar corepack, pero se configuró `packageManager: "pnpm@10.28.1"` en package.json
@@ -203,7 +203,7 @@
 
 - [x] **2.9** Implementar Splash Screen
   - ✅ `src/components/splash/SplashScreen.tsx` (Client)
-  - ✅ Animación CSS pura (reemplazado GSAP por animaciones CSS)
+  - ✅ Animación CSS pura (reemplazado react-magic-motion por animaciones CSS)
   - ✅ Background con efectos de blur radial
   - ✅ Loading shimmer animado
   - ✅ Prop `duration` funcional para controlar duración total
@@ -236,7 +236,7 @@
   - CTA buttons (Ver Galería, Ver Tienda)
   - Background con imagen o pattern
 
-- [ ] **3.3** Implementar animaciones Hero con GSAP (básico)
+- [ ] **3.3** Implementar animaciones Hero con react-magic-motion (básico)
   - Fade in del título
   - Slide up de botones
   - Parallax sutil en background
@@ -342,7 +342,7 @@
   - Crear `FiltersSkeleton.tsx`
   - Testear streaming
 
-- [ ] **4.10** Añadir animaciones de entrada (GSAP)
+- [ ] **4.10** Añadir animaciones de entrada (react-magic-motion)
   - Stagger animation al montar grid
   - Fade in de cards
   - Smooth transition de filtros
@@ -396,7 +396,7 @@
   - Zoom on click (modal fullscreen)
   - Gestos: pinch-zoom, pan
   - Close button
-  - GSAP animations
+  - react-magic-motion animations
 
 - [ ] **5.5** Galería de imágenes adicionales
   - Thumbnails debajo de imagen principal
@@ -567,7 +567,7 @@
 - [ ] **7.7** Integrar Cart en Header
   - Icono de carrito con badge (número de items)
   - Click abre Cart sidebar
-  - GSAP slide-in animation
+  - react-magic-motion slide-in animation
 
 - [ ] **7.8** Página Checkout (placeholder)
   - `src/app/[locale]/shop/checkout/page.tsx`
@@ -771,20 +771,20 @@
 
 ---
 
-## ✨ FASE 11: Animaciones con GSAP
+## ✨ FASE 11: Animaciones con react-magic-motion
 **Duración:** 3 días | **Prioridad:** MEDIA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
 
-- [ ] **11.1** Instalar GSAP y plugins
+- [ ] **11.1** Instalar react-magic-motion y plugins
   ```bash
-  pnpm add gsap
+  pnpm add react-magic-motion
   ```
   - Verificar compatibilidad con Next.js 15
   - Import en componentes Client
 
 - [ ] **11.2** Splash Screen animation
-  - Logo reveal con GSAP Timeline
+  - Logo reveal con react-magic-motion Timeline
   - Fade in + scale effect
   - Spray paint effect (opcional)
   - Auto-hide con delay
@@ -803,7 +803,7 @@
 - [ ] **11.5** Image hover effects
   - Scale up suave en hover
   - Overlay fade in
-  - Smooth transition (CSS + GSAP si necesario)
+  - Smooth transition (CSS + react-magic-motion si necesario)
 
 - [ ] **11.6** Filters panel animations
   - Slide down/up al abrir/cerrar
