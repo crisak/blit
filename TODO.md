@@ -1,14 +1,14 @@
 # TODO - Portafolio Web Grafitero con Next.js 16
 
 > **Objetivo:** Dominar Next.js 16+ implementando todas sus features en un proyecto real
-> **Progreso Total:** 1/14 fases completadas (7%)
+> **Progreso Total:** 2/14 fases completadas (14%)
 
 ---
 
 ## 📊 Resumen de Progreso por Fase
 
 - [x] **Fase 1:** Setup Inicial (9/9 tareas) ✅ **COMPLETADA**
-- [ ] **Fase 2:** Layout y Navegación (0/9 tareas)
+- [x] **Fase 2:** Layout y Navegación (9/9 tareas) ✅ **COMPLETADA**
 - [ ] **Fase 3:** Home Page SSG (0/9 tareas)
 - [ ] **Fase 4:** Galería Principal SSR (0/12 tareas)
 - [ ] **Fase 5:** Galería Detalle ISR (0/11 tareas)
@@ -146,70 +146,77 @@
 ---
 
 ## 🎨 FASE 2: Layout y Navegación
-**Duración:** 4 días | **Prioridad:** ALTA | **Estado:** 🔴 No iniciado
+**Duración:** 4 días | **Prioridad:** ALTA | **Estado:** ✅ **COMPLETADA**
 
 ### Tareas Principales
 
-- [ ] **2.1** Configurar layout raíz con i18n
-  - Crear `src/app/[locale]/layout.tsx`
-  - Implementar `generateStaticParams` para locales
-  - Configurar fonts (Inter, Montserrat) con `next/font`
-  - Aplicar metadata base
+- [x] **2.1** Configurar layout raíz con i18n
+  - ✅ `src/app/[locale]/layout.tsx` actualizado con Header, Footer y metadata dinámica
+  - ✅ `generateStaticParams` implementado para locales
+  - ✅ Fonts (Inter, Montserrat) configurados con `next/font`
+  - ✅ `generateMetadata` con Open Graph y Twitter Cards
 
-- [ ] **2.2** Crear tema Tailwind personalizado
-  - Editar `tailwind.config.ts` con paleta graffiti
-  - Añadir CSS variables en `globals.css`
-  - Crear `src/styles/graffiti-theme.css`
-  - Testear tema en componente simple
+- [x] **2.2** Crear tema Tailwind personalizado
+  - ✅ `globals.css` ampliado con más variables CSS (borders, states, transitions)
+  - ✅ Glow effects para componentes (`.glow-spray`, `.glow-pink`, etc.)
+  - ✅ Gradientes graffiti (`.bg-gradient-graffiti`, `.text-gradient-graffiti`)
+  - ✅ Utilidades de transición (`.transition-fast`, `.transition-base`, `.transition-slow`)
 
-- [ ] **2.3** Crear componentes UI base - Button
-  - `src/components/ui/Button.tsx` (Client Component)
-  - Variants: primary, secondary, ghost, danger
-  - Sizes: sm, md, lg
-  - Estados: loading, disabled
-  - TypeScript strict con props interface
+- [x] **2.3** Crear componentes UI base - Button
+  - ✅ `src/components/ui/Button.tsx` (Client Component)
+  - ✅ Variants: primary, secondary, ghost, danger
+  - ✅ Sizes: sm, md, lg
+  - ✅ Estados: loading con spinner, disabled
+  - ✅ TypeScript strict con `forwardRef`
 
-- [ ] **2.4** Crear componentes UI base - Card, Input, Modal
-  - `Card.tsx` (Server Component)
-  - `Input.tsx` (Client Component) con validación
-  - `Modal.tsx` (Client Component) con animación
+- [x] **2.4** Crear componentes UI base - Card, Input, Modal
+  - ✅ `Card.tsx` (Server Component) con CardHeader, CardContent, CardFooter
+  - ✅ `Input.tsx` (Client Component) con label, error y helperText
+  - ✅ `Modal.tsx` (Client Component) con focus trap, ESC close y backdrop
+  - ✅ Index de exports en `src/components/ui/index.ts`
 
-- [ ] **2.5** Implementar Header con navegación
-  - `src/components/layout/Header.tsx` (Client Component)
-  - Logo/Brand
-  - Links de navegación (Home, Gallery, Shop, About, Contact)
-  - Mobile menu hamburger
-  - Sticky header con scroll effect
+- [x] **2.5** Implementar Header con navegación
+  - ✅ `src/components/layout/Header.tsx` (Client Component)
+  - ✅ Logo BLITO con efecto glow
+  - ✅ Links de navegación con indicador activo
+  - ✅ Mobile menu hamburger con animación
+  - ✅ Sticky header con efecto backdrop-blur al scroll
 
-- [ ] **2.6** Implementar LanguageSwitcher
-  - `src/components/layout/LanguageSwitcher.tsx` (Client)
-  - Dropdown con flags ES/EN
-  - Usar `useRouter` y `usePathname` de next-intl
-  - Mantener path actual al cambiar idioma
+- [x] **2.6** Implementar LanguageSwitcher
+  - ✅ `src/components/layout/LanguageSwitcher.tsx` (Client)
+  - ✅ Dropdown con flags ES/EN
+  - ✅ Usa `useRouter` y `usePathname` de `@/i18n/routing`
+  - ✅ Mantiene path actual al cambiar idioma con `router.replace`
+  - ✅ Fix: Añadido `router.refresh()` para solucionar cache issue en desarrollo
 
-- [ ] **2.7** Crear Footer
-  - `src/components/layout/Footer.tsx` (Server Component)
-  - Links útiles
-  - Social media icons
-  - Copyright y credits
+- [x] **2.7** Crear Footer
+  - ✅ `src/components/layout/Footer.tsx` (Server Component)
+  - ✅ Sección de marca con descripción
+  - ✅ Links útiles a páginas principales
+  - ✅ Social media icons (Instagram, Twitter/X, YouTube)
+  - ✅ Copyright dinámico con año actual
 
-- [ ] **2.8** Crear traducciones iniciales
-  - Actualizar `src/i18n/messages/es.json` con nav, footer
-  - Actualizar `src/i18n/messages/en.json`
-  - Testear cambio de idioma
+- [x] **2.8** Crear traducciones iniciales
+  - ✅ `es.json` actualizado con metadata, nav, footer, splash, common
+  - ✅ `en.json` actualizado con las mismas secciones
+  - ✅ Cambio de idioma funcional
 
-- [ ] **2.9** Implementar Splash Screen
-  - `src/components/splash/SplashScreen.tsx` (Client)
-  - Animación de entrada con GSAP (básica por ahora)
-  - Logo reveal effect
-  - Auto-hide después de 2s
+- [x] **2.9** Implementar Splash Screen
+  - ✅ `src/components/splash/SplashScreen.tsx` (Client)
+  - ✅ Animación CSS pura (reemplazado GSAP por animaciones CSS)
+  - ✅ Background con efectos de blur radial
+  - ✅ Loading shimmer animado
+  - ✅ Prop `duration` funcional para controlar duración total
+  - ✅ Solo se muestra en Home page (no en otras páginas)
+  - ✅ `HomeContent.tsx` creado para integrar splash solo en home
 
 ### ✅ Criterios de Aceptación Fase 2
-- [x] Layout se renderiza correctamente en ambos idiomas
-- [x] Navegación funciona sin errores
-- [x] Cambio de idioma preserva la ruta
-- [x] Header responsive (mobile + desktop)
-- [x] Splash screen se muestra al cargar
+- [x] Layout se renderiza correctamente en ambos idiomas ✅
+- [x] Navegación funciona sin errores ✅
+- [x] Cambio de idioma preserva la ruta ✅
+- [x] Header responsive (mobile + desktop) ✅
+- [x] Splash screen se muestra al cargar ✅
+
 
 ---
 
@@ -1072,7 +1079,7 @@
 
 **Fecha de inicio:** Enero 20, 2026
 **Última actualización:** Enero 20, 2026
-**Progreso:** 7% (1/14 fases completadas)
+**Progreso:** 14% (2/14 fases completadas)
 
 ### Log de Cambios
 - 2026-01-20 (inicio): TODO.md creado con todas las fases planificadas
@@ -1085,6 +1092,25 @@
 - 2026-01-20 (12:30): Actualización a Tailwind CSS v4 con nueva sintaxis
 - 2026-01-20 (12:45): Tema graffiti dark implementado con custom utilities
 - 2026-01-20 (13:00): **✅ FASE 1 COMPLETADA** - Proyecto verificado funcionando en localhost
+- 2026-01-20 (14:00): Componentes UI creados (Button, Card, Input, Modal)
+- 2026-01-20 (14:30): Header responsive con navegación y scroll effect
+- 2026-01-20 (14:45): LanguageSwitcher con dropdown y cambio de idioma preservando ruta
+- 2026-01-20 (15:00): Footer con links y social media
+- 2026-01-20 (15:15): Splash Screen con animaciones GSAP
+- 2026-01-20 (15:30): Traducciones completas (metadata, nav, footer, common)
+- 2026-01-20 (15:45): **✅ FASE 2 COMPLETADA** - Build verificado sin errores
+- 2026-01-20 (16:00): Ajustes UX/UI - Estilos hover en botones y elementos interactivos
+- 2026-01-20 (16:15): Cambio de paleta de colores a grayscale elegante
+- 2026-01-20 (16:30): Integración de imagen banner en home
+- 2026-01-20 (16:45): Fix bug i18n - `localePrefix: 'always'` en routing.ts
+- 2026-01-20 (17:00): Fix bug i18n - `router.replace(pathname, { locale })` corregido
+- 2026-01-20 (17:15): Creado `/src/app/page.tsx` para redirect root a `/es`
+- 2026-01-20 (17:30): Reemplazado GSAP por react-magic-motion
+- 2026-01-20 (17:45): SplashScreen reescrito con CSS animations (sin GSAP)
+- 2026-01-20 (18:00): Splash movido solo a home page (HomeContent.tsx)
+- 2026-01-20 (18:15): AppWrapper removido del layout
+- 2026-01-20 (18:30): Fix desarrollo - `setRequestLocale` en layout + `router.refresh()` en LanguageSwitcher
+- 2026-01-20 (18:45): **✅ FASE 2 AJUSTES COMPLETADOS** - i18n funcionando en dev y prod
 
 ### 🎯 Siguiente Paso
-**FASE 2: Layout y Navegación** - Implementar Header, Footer, LanguageSwitcher, componentes UI base y Splash Screen
+**FASE 3: Home Page SSG** - Implementar Hero section con animaciones, Featured Works grid, ArtworkCard y mock data de artworks

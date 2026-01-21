@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Inter, Montserrat } from 'next/font/google';
 import { routing } from '@/i18n/routing';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 import '../globals.css';
 
 const inter = Inter({
@@ -19,13 +21,44 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 });
 
-export const metadata: Metadata = {
-  title: 'Blito',
-  description: 'Portfolio y tienda',
-};
+/**
+ * Options if you want enable the ISR
+ * export const revalidate = 345600; // 4days ISR activado
+ */
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  const t = await getTranslations({ locale, namespace: 'metadata' });
+
+  return {
+    title: {
+      default: t('title'),
+      template: `%s | ${t('title')}`,
+    },
+    description: t('description'),
+    keywords: t('keywords'),
+    authors: [{ name: 'Blito' }],
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+    },
+  };
 }
 
 export default async function LocaleLayout({
@@ -41,12 +74,21 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // Enable static rendering
+  setRequestLocale(locale);
+
   const messages = await getMessages();
 
   return (
     <html lang={locale}>
-      <body className={`${inter.variable} ${montserrat.variable} antialiased`}>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+      <body
+        className={`${inter.variable} ${montserrat.variable} antialiased flex min-h-screen flex-col`}
+      >
+        <NextIntlClientProvider messages={messages}>
+          <Header />
+          <main className="flex-1 pt-16">{children}</main>
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

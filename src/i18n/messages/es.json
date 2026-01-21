@@ -1,4 +1,9 @@
 {
+  "metadata": {
+    "title": "Blito - Arte Urbano",
+    "description": "Portfolio y tienda de arte urbano. Explora murales, graffiti y obras de street art.",
+    "keywords": "arte urbano, graffiti, street art, murales, portfolio, tienda"
+  },
   "nav": {
     "home": "Inicio",
     "gallery": "Galería",
@@ -7,7 +12,7 @@
     "contact": "Contacto"
   },
   "home": {
-    "title": "Arte Urbano, Hola a",
+    "title": "Arte Urbano",
     "subtitle": "Explora mi colección de obras de street art",
     "cta": {
       "gallery": "Ver Galería",
@@ -33,6 +38,26 @@
     "price": "Precio"
   },
   "footer": {
-    "rights": "Todos los derechos reservados"
+    "description": "Arte urbano que transforma espacios y cuenta historias a través del color y la forma.",
+    "linksTitle": "Enlaces",
+    "links": {
+      "gallery": "Galería",
+      "shop": "Tienda",
+      "about": "Sobre Mí",
+      "contact": "Contacto"
+    },
+    "socialTitle": "Sígueme",
+    "rights": "Todos los derechos reservados.",
+    "madeWith": "Hecho con pasión en las calles"
+  },
+  "splash": {
+    "loading": "Cargando..."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Ha ocurrido un error",
+    "retry": "Reintentar",
+    "close": "Cerrar",
+    "back": "Volver"
   }
 }

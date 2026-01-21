@@ -5,7 +5,7 @@
 **Tipo de Proyecto:** Portafolio Web + E-commerce para Artista Grafitero
 **Objetivo Principal:** Aprender Next.js (última versión) mediante implementación práctica de todas sus features
 **Stack Principal:** Next.js 15+ + React 19+ + TypeScript + pnpm
-**Estado:** Fase de Planificación
+**Estado:** Fase 2 Completada (14%)
 **Fecha de Inicio:** Enero 2026
 
 ---
@@ -47,8 +47,8 @@
 
 #### Styling & Animations
 - **Tailwind CSS 4+** - Utility-first CSS framework
-- **GSAP** - Animaciones avanzadas
-- **Framer Motion** (opcional) - Animaciones declarativas
+- **react-magic-motion** - Animaciones declarativas (reemplaza GSAP)
+- **CSS Animations** - Para transiciones y efectos simples
 
 #### Internacionalización
 - **next-intl** - Solución i18n para Next.js App Router
@@ -347,31 +347,32 @@ export async function GET(request: Request) {
 
 ## 🎨 Diseño y UX
 
-### Paleta de Colores (Tema Graffiti Oscuro)
+### Paleta de Colores (Tema Oscuro con Grayscale Elegante)
 
 ```css
 :root {
-  /* Dark Base */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #1a1a1a;
-  --bg-tertiary: #2a2a2a;
+  /* Dark Base - Escala de grises elegante */
+  --bg-primary: #030712;        /* gray-950 */
+  --bg-secondary: #111827;      /* gray-900 */
+  --bg-tertiary: #1f2937;       /* gray-800 */
 
-  /* Graffiti Accent Colors */
-  --accent-spray: #00ff88;      /* Verde neón spray */
-  --accent-pink: #ff006e;       /* Rosa vibrante */
-  --accent-cyan: #00d9ff;       /* Cyan eléctrico */
-  --accent-yellow: #ffbe0b;     /* Amarillo spray */
+  /* Accent Colors - Tonos neutros con sutiles acentos */
+  --accent-light: #f9fafb;      /* gray-50 */
+  --accent-medium: #9ca3af;     /* gray-400 */
+  --accent-border: #374151;     /* gray-700 */
 
   /* Text */
   --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #666666;
+  --text-secondary: #d1d5db;    /* gray-300 */
+  --text-muted: #6b7280;        /* gray-500 */
 
   /* Overlays */
-  --overlay-dark: rgba(0, 0, 0, 0.85);
+  --overlay-dark: rgba(3, 7, 18, 0.85);
   --glass: rgba(255, 255, 255, 0.05);
 }
 ```
+
+> **Nota:** Se cambió de colores neón vibrantes a una escala de grises elegante para dar un aspecto más sofisticado y callejero.
 
 ### Tipografía
 
@@ -382,16 +383,18 @@ export async function GET(request: Request) {
 - Accent: "Bebas Neue" - Títulos grandes tipo graffiti
 ```
 
-### Animaciones con GSAP
+### Animaciones con CSS y react-magic-motion
 
 ```typescript
 // Ejemplos de animaciones clave:
-1. Splash Screen: Efecto spray paint reveal
-2. Gallery Grid: Stagger animation al cargar
-3. Image Viewer: Parallax y zoom suave
-4. Page Transitions: Slide y fade
-5. Filters: Accordion smooth
+1. Splash Screen: CSS transitions (opacity, scale, tracking)
+2. Gallery Grid: Stagger animation con react-magic-motion
+3. Image Viewer: CSS transforms y zoom suave
+4. Page Transitions: CSS transitions (opacity, transform)
+5. Filters: CSS accordion con transitions
 ```
+
+> **Nota:** Se reemplazó GSAP por react-magic-motion y CSS animations nativas para reducir bundle size y mejorar performance.
 
 ---
 
@@ -609,24 +612,37 @@ import { createNavigation } from 'next-intl/navigation';
 export const routing = defineRouting({
   locales: ['es', 'en'],
   defaultLocale: 'es',
-  localePrefix: 'as-needed' // /es solo cuando no es default
+  localePrefix: 'always' // Siempre incluir locale en URL para evitar bugs en desarrollo
 });
 
-export const { Link, redirect, usePathname, useRouter } =
+export const { Link, redirect, usePathname, useRouter, getPathname } =
   createNavigation(routing);
 ```
+
+> **Nota:** Se cambió `localePrefix` de `'as-needed'` a `'always'` para evitar bugs de caching del router en modo desarrollo.
 
 #### `middleware.ts`
 ```typescript
 import createMiddleware from 'next-intl/middleware';
-import { routing } from './i18n/routing';
+import { routing } from './src/i18n/routing';
 
 export default createMiddleware(routing);
 
 export const config = {
-  matcher: ['/', '/(es|en)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)']
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };
 ```
+
+#### `src/app/page.tsx` (Root redirect)
+```typescript
+import { redirect } from 'next/navigation';
+
+export default function RootPage() {
+  redirect('/es');
+}
+```
+
+> **Nota:** Se creó una página root que redirige al locale por defecto para evitar que `/` no tenga contenido.
 
 ### Traducciones
 
@@ -939,23 +955,32 @@ export default function robots(): MetadataRoute.Robots {
 ### Fase 2: Layout y Navegación (Semana 1 - Días 4-7)
 **Duración:** 4 días
 **Prioridad:** ALTA
+**Estado:** ✅ COMPLETADA
 
 #### Tareas
-- [ ] Implementar layout raíz con i18n (`[locale]/layout.tsx`)
-- [ ] Crear Header con navegación (Client Component)
-- [ ] Implementar LanguageSwitcher
-- [ ] Crear Footer
-- [ ] Implementar middleware de i18n
-- [ ] Configurar fonts (Inter, Montserrat)
-- [ ] Crear componentes UI base (Button, Card, Input)
-- [ ] Implementar tema oscuro con CSS variables
-- [ ] Splash Screen con GSAP
+- [x] Implementar layout raíz con i18n (`[locale]/layout.tsx`)
+- [x] Crear Header con navegación (Client Component)
+- [x] Implementar LanguageSwitcher con `router.refresh()` para fix de desarrollo
+- [x] Crear Footer
+- [x] Implementar middleware de i18n con `localePrefix: 'always'`
+- [x] Configurar fonts (Inter, Montserrat)
+- [x] Crear componentes UI base (Button, Card, Input, Modal)
+- [x] Implementar tema grayscale elegante con CSS variables
+- [x] Splash Screen con CSS animations (solo en home page)
+- [x] Añadir `setRequestLocale` en layout para static rendering
+- [x] Crear root page redirect a `/es`
 
 #### Entregables
 ✅ Layout completo funcionando
-✅ Navegación con i18n
-✅ Componentes UI base
-✅ Splash screen animado
+✅ Navegación con i18n (funcionando en dev y prod)
+✅ Componentes UI base con hover states
+✅ Splash screen animado (solo en home)
+✅ Paleta grayscale elegante implementada
+
+#### Notas Técnicas
+- **i18n bugs resueltos:** Switch de idioma, carga de EN, redirect de root
+- **GSAP reemplazado:** Ahora usa react-magic-motion y CSS animations
+- **Splash optimizado:** Solo se muestra en home page, no bloquea otras páginas
 
 ---
 
@@ -1148,25 +1173,27 @@ export default function robots(): MetadataRoute.Robots {
 
 ---
 
-### Fase 11: Animaciones con GSAP (Semana 6 - Días 1-3)
+### Fase 11: Animaciones con react-magic-motion y CSS (Semana 6 - Días 1-3)
 **Duración:** 3 días
 **Prioridad:** MEDIA
 
 #### Tareas
-- [ ] Instalar y configurar GSAP
-- [ ] Splash screen reveal animation
-- [ ] Page transitions (SmoothScroll)
-- [ ] Gallery grid stagger animation
-- [ ] Image hover effects
-- [ ] Filter panel animations
-- [ ] Cart sidebar slide-in
-- [ ] Scroll-triggered animations
-- [ ] Parallax effects (hero section)
+- [ ] Configurar react-magic-motion para animaciones complejas
+- [ ] Gallery grid stagger animation con MagicMotion
+- [ ] Image hover effects con CSS transitions
+- [ ] Filter panel animations con CSS
+- [ ] Cart sidebar slide-in con CSS transforms
+- [ ] Scroll-triggered animations (IntersectionObserver)
+- [ ] Parallax effects (hero section) con CSS
 - [ ] Testing de performance (no afectar FPS)
+- [ ] Respetar `prefers-reduced-motion`
 
 #### Entregables
-✅ Animaciones implementadas
+✅ Animaciones implementadas con react-magic-motion y CSS
 ✅ No impacto negativo en performance
+✅ Bundle size optimizado (sin GSAP)
+
+> **Nota:** GSAP fue reemplazado por react-magic-motion y CSS animations para reducir el bundle size y mejorar performance.
 
 ---
 
@@ -1466,9 +1493,26 @@ El enfoque es **progresivo y organizado**, con fases claras y entregables concre
 ---
 
 **Última Actualización:** Enero 20, 2026
-**Versión:** 2.0
+**Versión:** 2.1
 **Autor:** Cristian
-**Objetivo:** Dominar Next.js 15+ mediante proyecto real
+**Objetivo:** Dominar Next.js 16+ mediante proyecto real
+
+---
+
+## 📝 Changelog
+
+### v2.1 (Enero 20, 2026)
+- ✅ Fase 2 completada con ajustes
+- Cambio de paleta de colores: graffiti neón → grayscale elegante
+- Reemplazo de GSAP por react-magic-motion
+- Fix de bugs i18n (switch, EN loading, root redirect)
+- Splash screen movido solo a home page
+- Añadido `setRequestLocale` y `router.refresh()` para fix de desarrollo
+
+### v2.0 (Enero 20, 2026)
+- Documento inicial de planificación
+- 14 fases definidas
+- Stack técnico completo
 
 ---
 
