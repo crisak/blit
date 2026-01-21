@@ -31,7 +31,7 @@ export function HomeContent() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/gallery/banner/bg-form-contact.jpg"
+            src="/images/gallery/banner/bg-form-contact.webp"
             alt="Street art mural"
             fill
             priority

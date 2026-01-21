@@ -1,18 +1,17 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import { Artwork } from '@/lib/types/artwork'
 
 interface ArtworkCardProps {
   artwork: Artwork
-  locale: string
 }
 
-export default function ArtworkCard({ artwork, locale }: ArtworkCardProps) {
+export default function ArtworkCard({ artwork }: ArtworkCardProps) {
   const mainImage = artwork.images[0]
 
   return (
     <Link
-      href={`/${locale}/gallery/${artwork.slug}`}
+      href={`/gallery/${artwork.slug}`}
       className="group relative block overflow-hidden rounded-lg bg-gray-900 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
     >
       {/* Image Container */}

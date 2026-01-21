@@ -17,6 +17,16 @@
     "cta": {
       "gallery": "View Gallery",
       "shop": "Go to Shop"
+    },
+    "featured": {
+      "title": "Featured Works",
+      "subtitle": "A selection of my latest and most popular works",
+      "viewAll": "View full gallery"
+    },
+    "about": {
+      "title": "About Me",
+      "content": "I'm an urban artist passionate about transforming public spaces into canvases of expression. With over 10 years of experience in the street art world, I've had the privilege of creating murals in cities across Spain and Europe. My work explores the intersection between traditional graffiti art and modern techniques, always seeking to tell visual stories that resonate with the community.",
+      "cta": "Learn more"
     }
   },
   "gallery": {

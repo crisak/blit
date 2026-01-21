@@ -17,6 +17,16 @@
     "cta": {
       "gallery": "Ver Galería",
       "shop": "Ir a la Tienda"
+    },
+    "featured": {
+      "title": "Obras Destacadas",
+      "subtitle": "Una selección de mis trabajos más recientes y populares",
+      "viewAll": "Ver toda la galería"
+    },
+    "about": {
+      "title": "Sobre Mí",
+      "content": "Soy un artista urbano apasionado por transformar espacios públicos en lienzos de expresión. Con más de 10 años de experiencia en el mundo del street art, he tenido el privilegio de crear murales en ciudades de toda España y Europa. Mi trabajo explora la intersección entre el arte tradicional del graffiti y las técnicas modernas, siempre buscando contar historias visuales que resonan con la comunidad.",
+      "cta": "Conocer más"
     }
   },
   "gallery": {
