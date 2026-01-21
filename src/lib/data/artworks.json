@@ -1,0 +1,297 @@
+[
+  {
+    "id": "1",
+    "slug": "urban-dreams-downtown",
+    "title": "Urban Dreams",
+    "description": "Un mural vibrante que captura la esencia de la vida urbana moderna, mezclando colores neón con sombras oscuras. Esta obra explora el contraste entre la naturaleza artificial de las ciudades y los sueños de quienes las habitan.",
+    "category": "mural",
+    "technique": "spray",
+    "images": [
+      {
+        "url": "https://blito-8789234-store.s3.us-east-1.amazonaws.com/dos-careloquitos/dos-careloquitos/dos-careloquitos-1.jpg",
+        "alt": "Mural Urban Dreams con colores vibrantes y formas abstractas",
+        "width": 1200,
+        "height": 800
+      }
+    ],
+    "location": {
+      "city": "Madrid",
+      "country": "España",
+      "coordinates": {
+        "lat": 40.4168,
+        "lng": -3.7038
+      }
+    },
+    "dimensions": {
+      "width": 15,
+      "height": 8,
+      "unit": "m"
+    },
+    "year": 2024,
+    "colors": ["#FF0080", "#00FFFF", "#FFD700", "#8A2BE2"],
+    "dominantColor": "#FF0080",
+    "orientation": "landscape",
+    "featured": true,
+    "views": 3420,
+    "likes": 892,
+    "createdAt": "2024-03-15T10:00:00Z",
+    "updatedAt": "2024-03-15T10:00:00Z"
+  },
+  {
+    "id": "2",
+    "slug": "neon-nights-barcelona",
+    "title": "Neon Nights",
+    "description": "Inspirado en las noches de la ciudad, esta obra utiliza técnicas de stencil para crear capas de profundidad. Los tonos neón contrastan con el fondo oscuro, evocando la energía nocturna del arte callejero.",
+    "category": "street",
+    "technique": "stencil",
+    "images": [
+      {
+        "url": "https://blito-8789234-store.s3.us-east-1.amazonaws.com/dos-careloquitos/dos-careloquitos/dos-careloquitos-2.jpg",
+        "alt": "Arte callejero Neon Nights con técnica de stencil",
+        "width": 1200,
+        "height": 1600
+      }
+    ],
+    "location": {
+      "city": "Barcelona",
+      "country": "España",
+      "coordinates": {
+        "lat": 41.3851,
+        "lng": 2.1734
+      }
+    },
+    "dimensions": {
+      "width": 3,
+      "height": 4,
+      "unit": "m"
+    },
+    "year": 2024,
+    "colors": ["#00FF00", "#FF1493", "#00CED1", "#000000"],
+    "dominantColor": "#00FF00",
+    "orientation": "portrait",
+    "featured": true,
+    "views": 2815,
+    "likes": 654,
+    "createdAt": "2024-02-20T14:30:00Z",
+    "updatedAt": "2024-02-20T14:30:00Z"
+  },
+  {
+    "id": "3",
+    "slug": "chromatic-chaos-valencia",
+    "title": "Chromatic Chaos",
+    "description": "Una explosión de color y forma que desafía las convenciones del arte urbano. Esta pieza representa el caos organizado de la creatividad humana, donde cada trazo cuenta una historia diferente.",
+    "category": "mural",
+    "technique": "mixed",
+    "images": [
+      {
+        "url": "https://blito-8789234-store.s3.us-east-1.amazonaws.com/dos-careloquitos/dos-careloquitos/dos-careloquitos-3.jpg",
+        "alt": "Mural Chromatic Chaos con técnica mixta y múltiples colores",
+        "width": 1200,
+        "height": 1200
+      }
+    ],
+    "location": {
+      "city": "Valencia",
+      "country": "España",
+      "coordinates": {
+        "lat": 39.4699,
+        "lng": -0.3763
+      }
+    },
+    "dimensions": {
+      "width": 10,
+      "height": 10,
+      "unit": "m"
+    },
+    "year": 2023,
+    "colors": ["#FF6347", "#4169E1", "#FFD700", "#32CD32"],
+    "dominantColor": "#FF6347",
+    "orientation": "square",
+    "featured": true,
+    "views": 4120,
+    "likes": 1023,
+    "createdAt": "2023-11-10T09:15:00Z",
+    "updatedAt": "2023-11-10T09:15:00Z"
+  },
+  {
+    "id": "4",
+    "slug": "digital-revolution-studio",
+    "title": "Digital Revolution",
+    "description": "Una fusión entre el arte tradicional del graffiti y las herramientas digitales modernas. Esta obra explora cómo la tecnología puede amplificar la expresión artística sin perder la esencia del street art.",
+    "category": "digital",
+    "technique": "digital",
+    "images": [
+      {
+        "url": "https://blito-8789234-store.s3.us-east-1.amazonaws.com/dos-careloquitos/dos-careloquitos/dos-careloquitos-4.jpg",
+        "alt": "Arte digital Digital Revolution con elementos de graffiti",
+        "width": 1600,
+        "height": 900
+      }
+    ],
+    "location": {
+      "city": "Madrid",
+      "country": "España"
+    },
+    "year": 2024,
+    "colors": ["#00FFFF", "#FF00FF", "#FFFF00", "#1E90FF"],
+    "dominantColor": "#00FFFF",
+    "orientation": "landscape",
+    "featured": false,
+    "views": 1890,
+    "likes": 432,
+    "createdAt": "2024-01-05T16:45:00Z",
+    "updatedAt": "2024-01-05T16:45:00Z"
+  },
+  {
+    "id": "5",
+    "slug": "abstract-waves-malaga",
+    "title": "Abstract Waves",
+    "description": "Inspirado en el movimiento del océano y las formas orgánicas, esta obra combina técnicas de spray y acrílico para crear una sensación de fluidez y movimiento constante.",
+    "category": "canvas",
+    "technique": "acrylic",
+    "images": [
+      {
+        "url": "https://blito-8789234-store.s3.us-east-1.amazonaws.com/dos-careloquitos/dos-careloquitos/dos-careloquitos-5.jpg",
+        "alt": "Canvas Abstract Waves con formas fluidas",
+        "width": 1400,
+        "height": 1000
+      }
+    ],
+    "location": {
+      "city": "Málaga",
+      "country": "España",
+      "coordinates": {
+        "lat": 36.7213,
+        "lng": -4.4214
+      }
+    },
+    "dimensions": {
+      "width": 120,
+      "height": 90,
+      "unit": "cm"
+    },
+    "year": 2023,
+    "colors": ["#1E90FF", "#00CED1", "#FFFFFF", "#708090"],
+    "dominantColor": "#1E90FF",
+    "orientation": "landscape",
+    "featured": true,
+    "views": 2567,
+    "likes": 789,
+    "createdAt": "2023-09-18T11:20:00Z",
+    "updatedAt": "2023-09-18T11:20:00Z"
+  },
+  {
+    "id": "6",
+    "slug": "street-poetry-sevilla",
+    "title": "Street Poetry",
+    "description": "Una obra que combina lettering tipográfico con elementos visuales urbanos. Cada letra cuenta una historia, cada palabra es un trazo de spray que narra la vida en las calles.",
+    "category": "street",
+    "technique": "marker",
+    "images": [
+      {
+        "url": "https://blito-8789234-store.s3.us-east-1.amazonaws.com/dos-careloquitos/dos-careloquitos/dos-careloquitos-6.jpg",
+        "alt": "Street art Street Poetry con lettering urbano",
+        "width": 1200,
+        "height": 1800
+      }
+    ],
+    "location": {
+      "city": "Sevilla",
+      "country": "España",
+      "coordinates": {
+        "lat": 37.3891,
+        "lng": -5.9845
+      }
+    },
+    "dimensions": {
+      "width": 2,
+      "height": 3,
+      "unit": "m"
+    },
+    "year": 2024,
+    "colors": ["#000000", "#FFFFFF", "#FF0000", "#FFD700"],
+    "dominantColor": "#000000",
+    "orientation": "portrait",
+    "featured": false,
+    "views": 1543,
+    "likes": 321,
+    "createdAt": "2024-04-02T13:00:00Z",
+    "updatedAt": "2024-04-02T13:00:00Z"
+  },
+  {
+    "id": "7",
+    "slug": "cosmic-spray-bilbao",
+    "title": "Cosmic Spray",
+    "description": "Una exploración del espacio y el cosmos a través del arte urbano. Planetas, estrellas y galaxias cobran vida en esta pieza que invita a soñar más allá de las fronteras terrestres.",
+    "category": "mural",
+    "technique": "spray",
+    "images": [
+      {
+        "url": "https://blito-8789234-store.s3.us-east-1.amazonaws.com/gallery/semillas-de-tibanica/semillas-de-tibanica-1.webp",
+        "alt": "Mural Cosmic Spray con temática espacial",
+        "width": 1600,
+        "height": 1200
+      }
+    ],
+    "location": {
+      "city": "Bilbao",
+      "country": "España",
+      "coordinates": {
+        "lat": 43.2627,
+        "lng": -2.9253
+      }
+    },
+    "dimensions": {
+      "width": 12,
+      "height": 6,
+      "unit": "m"
+    },
+    "year": 2023,
+    "colors": ["#000080", "#8B00FF", "#00FFFF", "#FFFFFF"],
+    "dominantColor": "#000080",
+    "orientation": "landscape",
+    "featured": true,
+    "views": 3892,
+    "likes": 967,
+    "createdAt": "2023-08-25T15:30:00Z",
+    "updatedAt": "2023-08-25T15:30:00Z"
+  },
+  {
+    "id": "8",
+    "slug": "urban-garden-zaragoza",
+    "title": "Urban Garden",
+    "description": "Una reflexión sobre la naturaleza en entornos urbanos. Flores, plantas y vida orgánica emergen de paredes de concreto, simbolizando la resiliencia de la naturaleza ante la urbanización.",
+    "category": "commission",
+    "technique": "mixed",
+    "images": [
+      {
+        "url": "https://blito-8789234-store.s3.us-east-1.amazonaws.com/gallery/semillas-de-tibanica/semillas-de-tibanica-2.webp",
+        "alt": "Mural comisionado Urban Garden con elementos naturales",
+        "width": 1200,
+        "height": 900
+      }
+    ],
+    "location": {
+      "city": "Zaragoza",
+      "country": "España",
+      "coordinates": {
+        "lat": 41.6488,
+        "lng": -0.8891
+      }
+    },
+    "dimensions": {
+      "width": 8,
+      "height": 4,
+      "unit": "m"
+    },
+    "year": 2024,
+    "colors": ["#228B22", "#FF69B4", "#FFD700", "#87CEEB"],
+    "dominantColor": "#228B22",
+    "orientation": "landscape",
+    "featured": false,
+    "views": 2103,
+    "likes": 578,
+    "createdAt": "2024-05-12T10:45:00Z",
+    "updatedAt": "2024-05-12T10:45:00Z"
+  }
+]

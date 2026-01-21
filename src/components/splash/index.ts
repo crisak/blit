@@ -1,1 +1,2 @@
-export { SplashScreen } from './SplashScreen';
+export { SplashScreen } from './SplashScreen'
+export { SplashWrapper } from './SplashWrapper'
