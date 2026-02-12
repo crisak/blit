@@ -31,14 +31,44 @@
   },
   "gallery": {
     "title": "Mi Galería",
+    "subtitle": "Explora toda mi colección de arte urbano. Filtra por categoría, técnica, ciudad y más.",
     "filters": {
+      "title": "Filtros",
       "category": "Categoría",
       "technique": "Técnica",
-      "location": "Ubicación",
-      "color": "Color",
-      "size": "Tamaño",
-      "clear": "Limpiar filtros"
-    }
+      "city": "Ciudad",
+      "orientation": "Orientación",
+      "search": "Buscar",
+      "searchPlaceholder": "Buscar obras...",
+      "clear": "Limpiar filtros",
+      "apply": "Aplicar",
+      "categories": {
+        "all": "Todas",
+        "mural": "Murales",
+        "street": "Street Art",
+        "canvas": "Canvas",
+        "digital": "Digital",
+        "commission": "Comisiones",
+        "exhibition": "Exhibiciones"
+      },
+      "techniques": {
+        "all": "Todas",
+        "spray": "Spray",
+        "stencil": "Stencil",
+        "marker": "Marcador",
+        "acrylic": "Acrílico",
+        "mixed": "Técnica Mixta",
+        "digital": "Digital"
+      },
+      "orientations": {
+        "all": "Todas",
+        "landscape": "Horizontal",
+        "portrait": "Vertical",
+        "square": "Cuadrada"
+      }
+    },
+    "noResults": "No se encontraron obras con estos filtros",
+    "tryDifferent": "Intenta con otros filtros"
   },
   "shop": {
     "title": "Tienda",

@@ -49,11 +49,22 @@ export interface ArtworkImage {
 }
 
 export interface ArtworkFilters {
-  category?: ArtworkCategory
-  technique?: ArtworkTechnique
+  category?: ArtworkCategory | 'all'
+  technique?: ArtworkTechnique | 'all'
   city?: string
   color?: string
-  orientation?: 'landscape' | 'portrait' | 'square'
+  orientation?: 'landscape' | 'portrait' | 'square' | 'all'
   featured?: boolean
   year?: number
+  search?: string
+}
+
+export interface FilterOptions {
+  category?: ArtworkCategory | 'all'
+  technique?: ArtworkTechnique | 'all'
+  city?: string
+  orientation?: 'landscape' | 'portrait' | 'square' | 'all'
+  featured?: boolean
+  year?: number
+  search?: string
 }

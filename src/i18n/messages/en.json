@@ -31,14 +31,44 @@
   },
   "gallery": {
     "title": "My Gallery",
+    "subtitle": "Explore my entire urban art collection. Filter by category, technique, city and more.",
     "filters": {
+      "title": "Filters",
       "category": "Category",
       "technique": "Technique",
-      "location": "Location",
-      "color": "Color",
-      "size": "Size",
-      "clear": "Clear filters"
-    }
+      "city": "City",
+      "orientation": "Orientation",
+      "search": "Search",
+      "searchPlaceholder": "Search artworks...",
+      "clear": "Clear filters",
+      "apply": "Apply",
+      "categories": {
+        "all": "All",
+        "mural": "Murals",
+        "street": "Street Art",
+        "canvas": "Canvas",
+        "digital": "Digital",
+        "commission": "Commissions",
+        "exhibition": "Exhibitions"
+      },
+      "techniques": {
+        "all": "All",
+        "spray": "Spray",
+        "stencil": "Stencil",
+        "marker": "Marker",
+        "acrylic": "Acrylic",
+        "mixed": "Mixed Media",
+        "digital": "Digital"
+      },
+      "orientations": {
+        "all": "All",
+        "landscape": "Landscape",
+        "portrait": "Portrait",
+        "square": "Square"
+      }
+    },
+    "noResults": "No artworks found with these filters",
+    "tryDifferent": "Try different filters"
   },
   "shop": {
     "title": "Shop",
