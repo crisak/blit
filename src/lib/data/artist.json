@@ -1,0 +1,30 @@
+{
+  "name": "Blito",
+  "bio": "Soy un artista urbano apasionado por transformar espacios públicos en lienzos de expresión. Con más de 10 años de experiencia en el mundo del street art, he tenido el privilegio de crear murales en ciudades de toda España y Europa.",
+  "trajectory": "Comencé mi carrera artística en las calles de Madrid a principios de los 2010s. Lo que empezó como una forma de expresión juvenil se transformó en una vocación profesional que me ha llevado a participar en festivales de arte urbano internacionales, colaborar con marcas y organizaciones culturales, y dejar mi huella en más de 50 ciudades. Cada mural cuenta una historia diferente, pero todos comparten el mismo espíritu: conectar con la comunidad a través del color y la forma.",
+  "philosophy": "Creo que el arte debe ser accesible para todos. Las calles son la galería más democrática del mundo — no necesitas una entrada ni un código de vestimenta para disfrutar de un mural. Mi trabajo busca desafiar la percepción de los espacios urbanos, transformando muros grises en ventanas a mundos imaginarios. Cada pieza es una conversación entre el artista, el espacio y la comunidad que lo habita.",
+  "profileImage": {
+    "url": "/images/gallery/banner/bg-form-contact.webp",
+    "alt": "Blito - Artista urbano",
+    "width": 800,
+    "height": 800
+  },
+  "socialLinks": [
+    {
+      "platform": "instagram",
+      "url": "https://instagram.com/blito",
+      "label": "Instagram"
+    },
+    {
+      "platform": "twitter",
+      "url": "https://twitter.com/blito",
+      "label": "Twitter / X"
+    },
+    {
+      "platform": "youtube",
+      "url": "https://youtube.com/@blito",
+      "label": "YouTube"
+    }
+  ],
+  "email": "contact@blito.art"
+}

@@ -1,13 +1,12 @@
 {
   "metadata": {
     "title": "Blito - Urban Art",
-    "description": "Urban art portfolio and shop. Explore murals, graffiti and street art works.",
-    "keywords": "urban art, graffiti, street art, murals, portfolio, shop"
+    "description": "Urban art portfolio. Explore murals, graffiti and street art works.",
+    "keywords": "urban art, graffiti, street art, murals, portfolio"
   },
   "nav": {
     "home": "Home",
     "gallery": "Gallery",
-    "shop": "Shop",
     "about": "About Me",
     "contact": "Contact"
   },
@@ -16,7 +15,7 @@
     "subtitle": "Explore my collection of street art works",
     "cta": {
       "gallery": "View Gallery",
-      "shop": "Go to Shop"
+      "about": "About Me"
     },
     "featured": {
       "title": "Featured Works",
@@ -70,19 +69,90 @@
     "noResults": "No artworks found with these filters",
     "tryDifferent": "Try different filters"
   },
-  "shop": {
-    "title": "Shop",
-    "addToCart": "Add to Cart",
-    "soldOut": "Sold Out",
-    "limitedEdition": "Limited Edition",
-    "price": "Price"
+  "artworkDetail": {
+    "title": "Artwork Detail",
+    "category": "Category",
+    "technique": "Technique",
+    "year": "Year",
+    "location": "Location",
+    "dimensions": "Dimensions",
+    "colors": "Dominant colors",
+    "views": "Views",
+    "likes": "Likes",
+    "relatedWorks": "Related Works",
+    "backToGallery": "Back to gallery",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "closeViewer": "Close viewer",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "imageOf": "Image {current} of {total}",
+    "noDescription": "No description available"
+  },
+  "share": {
+    "title": "Share",
+    "shareOn": "Share on {platform}",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "whatsapp": "WhatsApp"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Discover the story and philosophy behind the art",
+    "trajectory": "Trajectory",
+    "philosophy": "Artistic Philosophy",
+    "followMe": "Follow Me",
+    "contactMe": "Contact Me"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Have a project in mind? Let's talk!",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@email.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "What is it about?",
+      "message": "Message",
+      "messagePlaceholder": "Tell me more about your project...",
+      "submit": "Send message",
+      "submitting": "Sending...",
+      "success": "Message sent successfully!",
+      "successDescription": "Thank you for reaching out. I'll get back to you as soon as possible.",
+      "error": "Error sending message",
+      "errorDescription": "There was a problem sending your message. Please try again."
+    },
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name must be at most 100 characters",
+      "emailInvalid": "Invalid email format",
+      "subjectMin": "Subject must be at least 5 characters",
+      "subjectMax": "Subject must be at most 200 characters",
+      "messageMin": "Message must be at least 10 characters",
+      "messageMax": "Message must be at most 2000 characters"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Go home",
+    "backGallery": "View gallery"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again.",
+    "retry": "Retry",
+    "backHome": "Go home"
   },
   "footer": {
     "description": "Urban art that transforms spaces and tells stories through color and form.",
     "linksTitle": "Links",
     "links": {
       "gallery": "Gallery",
-      "shop": "Shop",
       "about": "About Me",
       "contact": "Contact"
     },

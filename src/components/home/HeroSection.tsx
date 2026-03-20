@@ -52,9 +52,9 @@ export function HeroSection() {
               {t('cta.gallery')}
             </Button>
           </Link>
-          <Link href="/shop">
+          <Link href="/about">
             <Button size="lg" variant="secondary">
-              {t('cta.shop')}
+              {t('cta.about')}
             </Button>
           </Link>
         </div>

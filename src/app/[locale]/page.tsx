@@ -56,23 +56,35 @@ export default async function Home({ params }: HomeProps) {
   const { locale } = await params
   setRequestLocale(locale)
 
-  // JSON-LD Schema for SEO
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Blito - Portafolio de arte callejero',
-    description:
-      'Portafolio y galería de arte urbano con arte callejero, murales y obras de grafiti.',
-    url: `https://blito.com/${locale}`,
-    inLanguage: locale,
-    image: '/images/gallery/banner/bg-form-contact.webp',
+  const siteUrl = 'https://blito.art'
 
-    author: {
-      '@type': 'Pablo',
-      name: 'Blito',
-      description: 'Artista urbano apasionado por transformar espacios públicos',
+  // JSON-LD Schema for SEO — WebSite + Person
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Blito - Street Art Portfolio',
+      description:
+        'Portfolio de arte urbano. Explora murales, graffiti y obras de street art.',
+      url: `${siteUrl}/${locale}`,
+      inLanguage: locale,
+      image: `${siteUrl}/images/gallery/banner/bg-form-contact.webp`,
     },
-  }
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Blito',
+      description: 'Artista urbano apasionado por transformar espacios públicos en lienzos de expresión.',
+      url: siteUrl,
+      sameAs: [
+        'https://instagram.com/blito',
+        'https://twitter.com/blito',
+        'https://youtube.com/@blito',
+      ],
+      jobTitle: 'Street Artist',
+      knowsAbout: ['Street Art', 'Graffiti', 'Murals', 'Urban Art'],
+    },
+  ]
 
   return (
     <>

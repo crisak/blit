@@ -1,13 +1,13 @@
 import { Suspense } from 'react'
-import { setRequestLocale } from 'next-intl/server'
+import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { useTranslations } from 'next-intl'
+import type { Metadata } from 'next'
 import { getArtworks } from '@/lib/services/artworkService'
 import type { FilterOptions } from '@/lib/types/artwork'
 import ArtworkGrid from '@/components/gallery/ArtworkGrid'
 import ArtworkGridSkeleton from '@/components/gallery/ArtworkGridSkeleton'
 import Filters from '@/components/gallery/Filters'
 
-// Configurar página como SSR (Server-Side Rendering)
 export const dynamic = 'force-dynamic'
 
 interface GalleryPageProps {
@@ -23,6 +23,42 @@ interface GalleryPageProps {
     year?: string
     search?: string
   }>
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'gallery' })
+  const tMeta = await getTranslations({ locale, namespace: 'metadata' })
+  const siteUrl = 'https://blito.art'
+
+  return {
+    title: t('title'),
+    description: t('subtitle'),
+    alternates: {
+      canonical: `${siteUrl}/${locale}/gallery`,
+      languages: {
+        es: `${siteUrl}/es/gallery`,
+        en: `${siteUrl}/en/gallery`,
+      },
+    },
+    openGraph: {
+      title: `${t('title')} | ${tMeta('title')}`,
+      description: t('subtitle'),
+      url: `${siteUrl}/${locale}/gallery`,
+      siteName: 'Blito - Street Art',
+      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${t('title')} | ${tMeta('title')}`,
+      description: t('subtitle'),
+    },
+  }
 }
 
 export default async function GalleryPage({
