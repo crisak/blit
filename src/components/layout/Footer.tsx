@@ -49,7 +49,6 @@ const socialLinks = [
 
 const footerLinks = [
   { href: '/gallery', labelKey: 'links.gallery' },
-  { href: '/shop', labelKey: 'links.shop' },
   { href: '/about', labelKey: 'links.about' },
   { href: '/contact', labelKey: 'links.contact' },
 ] as const

@@ -1,13 +1,12 @@
 {
   "metadata": {
     "title": "Blito - Arte Urbano",
-    "description": "Portfolio y tienda de arte urbano. Explora murales, graffiti y obras de street art.",
-    "keywords": "arte urbano, graffiti, street art, murales, portfolio, tienda"
+    "description": "Portfolio de arte urbano. Explora murales, graffiti y obras de street art.",
+    "keywords": "arte urbano, graffiti, street art, murales, portfolio"
   },
   "nav": {
     "home": "Inicio",
     "gallery": "Galería",
-    "shop": "Tienda",
     "about": "Sobre Mí",
     "contact": "Contacto"
   },
@@ -16,7 +15,7 @@
     "subtitle": "Explora mi colección de obras de street art",
     "cta": {
       "gallery": "Ver Galería",
-      "shop": "Ir a la Tienda"
+      "about": "Sobre Mí"
     },
     "featured": {
       "title": "Obras Destacadas",
@@ -70,19 +69,90 @@
     "noResults": "No se encontraron obras con estos filtros",
     "tryDifferent": "Intenta con otros filtros"
   },
-  "shop": {
-    "title": "Tienda",
-    "addToCart": "Añadir al Carrito",
-    "soldOut": "Agotado",
-    "limitedEdition": "Edición Limitada",
-    "price": "Precio"
+  "artworkDetail": {
+    "title": "Detalle de Obra",
+    "category": "Categoría",
+    "technique": "Técnica",
+    "year": "Año",
+    "location": "Ubicación",
+    "dimensions": "Dimensiones",
+    "colors": "Colores dominantes",
+    "views": "Vistas",
+    "likes": "Me gusta",
+    "relatedWorks": "Obras Relacionadas",
+    "backToGallery": "Volver a la galería",
+    "zoomIn": "Ampliar imagen",
+    "zoomOut": "Reducir imagen",
+    "closeViewer": "Cerrar visor",
+    "previousImage": "Imagen anterior",
+    "nextImage": "Siguiente imagen",
+    "imageOf": "Imagen {current} de {total}",
+    "noDescription": "Sin descripción disponible"
+  },
+  "share": {
+    "title": "Compartir",
+    "shareOn": "Compartir en {platform}",
+    "copyLink": "Copiar enlace",
+    "linkCopied": "Enlace copiado",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "whatsapp": "WhatsApp"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "description": "Conoce la historia y filosofía detrás del arte",
+    "trajectory": "Trayectoria",
+    "philosophy": "Filosofía Artística",
+    "followMe": "Sígueme",
+    "contactMe": "Contáctame"
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "¿Tienes un proyecto en mente? ¡Hablemos!",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "tu@email.com",
+      "subject": "Asunto",
+      "subjectPlaceholder": "¿De qué se trata?",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntame más sobre tu proyecto...",
+      "submit": "Enviar mensaje",
+      "submitting": "Enviando...",
+      "success": "¡Mensaje enviado con éxito!",
+      "successDescription": "Gracias por contactarme. Te responderé lo antes posible.",
+      "error": "Error al enviar el mensaje",
+      "errorDescription": "Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo."
+    },
+    "validation": {
+      "nameMin": "El nombre debe tener al menos 2 caracteres",
+      "nameMax": "El nombre debe tener como máximo 100 caracteres",
+      "emailInvalid": "Formato de correo electrónico no válido",
+      "subjectMin": "El asunto debe tener al menos 5 caracteres",
+      "subjectMax": "El asunto debe tener como máximo 200 caracteres",
+      "messageMin": "El mensaje debe tener al menos 10 caracteres",
+      "messageMax": "El mensaje debe tener como máximo 2000 caracteres"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "Página no encontrada",
+    "description": "La página que buscas no existe o ha sido movida.",
+    "backHome": "Ir al inicio",
+    "backGallery": "Ver galería"
+  },
+  "error": {
+    "title": "Algo salió mal",
+    "description": "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
+    "retry": "Reintentar",
+    "backHome": "Ir al inicio"
   },
   "footer": {
     "description": "Arte urbano que transforma espacios y cuenta historias a través del color y la forma.",
     "linksTitle": "Enlaces",
     "links": {
       "gallery": "Galería",
-      "shop": "Tienda",
       "about": "Sobre Mí",
       "contact": "Contacto"
     },

@@ -40,6 +40,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'metadata' })
 
   return {
+    metadataBase: new URL('https://blito.art'),
     title: {
       default: t('title'),
       template: `%s | ${t('title')}`,

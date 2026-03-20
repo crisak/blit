@@ -12,12 +12,12 @@ export default function ArtworkCard({ artwork }: ArtworkCardProps) {
 
   // Traducir categoría
   const getCategoryLabel = (category: string) => {
-    return t(`categories.${category}` as any) || category
+    return t(`categories.${category}` as Parameters<typeof t>[0]) || category
   }
 
   // Traducir técnica
   const getTechniqueLabel = (technique: string) => {
-    return t(`techniques.${technique}` as any) || technique
+    return t(`techniques.${technique}` as Parameters<typeof t>[0]) || technique
   }
 
   return (

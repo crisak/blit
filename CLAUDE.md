@@ -19,19 +19,23 @@ Package manager is **pnpm** (v10). Do not use npm or yarn.
 ## Architecture
 
 - **App Router** with `[locale]` dynamic segment — all pages live under `src/app/[locale]/`
+- **Rendering**: SSG (Home, About, Contact), SSR (Gallery), ISR (Artwork Detail, revalidate=3600)
 - **i18n:** `next-intl` with middleware-based locale routing (`localePrefix: 'always'`). Config at `src/i18n/`, messages in `src/i18n/messages/{es,en}.json`
-- **Static rendering:** uses `generateStaticParams` + `setRequestLocale` for SSG with i18n
+- **Data**: BFF pattern — all data through `src/lib/services/`. No direct JSON imports in pages/components. Contract stable for future Go backend migration.
 - **Imports:** use `@/*` path alias (maps to `./src/*`)
 - **Navigation:** use `Link`, `useRouter`, `usePathname` from `@/i18n/routing` (not from `next/link` or `next/navigation`) to preserve locale
+- **Validation**: Zod schemas in `src/lib/validations/` shared between client and server
 
 ## Key Directories
 
-- `src/components/` — organized by feature (`gallery/`, `home/`, `shop/`, `splash/`) + shared (`layout/`, `ui/`)
-- `src/lib/types/` — TypeScript type definitions
-- `src/lib/services/` — data fetching / business logic
-- `src/lib/data/` — static JSON data
+- `src/components/` — organized by feature (`gallery/`, `home/`, `about/`, `contact/`, `splash/`) + shared (`layout/`, `ui/`)
+- `src/lib/types/` — TypeScript type definitions (artwork, artist, contact)
+- `src/lib/services/` — BFF service layer (artworkService, artistService, contactService)
+- `src/lib/data/` — static JSON data (artworks.json, artist.json)
+- `src/lib/validations/` — Zod validation schemas
 - `src/lib/utils/` — utilities (`cn` for class merging via clsx + tailwind-merge)
 - `src/hooks/` — custom React hooks
+- `src/app/api/` — BFF route handlers (artworks, contact)
 
 ## Code Style
 
@@ -46,3 +50,10 @@ Package manager is **pnpm** (v10). Do not use npm or yarn.
 - **Tailwind CSS v4** with PostCSS plugin (`@tailwindcss/postcss`)
 - Use `cn()` from `@/lib/utils/cn` to merge class names
 - Fonts: Inter (body) and Montserrat (headings), loaded via `next/font/google` as CSS variables
+
+## Active Technologies
+- TypeScript 5.x (strict mode, `noUncheckedIndexedAccess`) + Next.js 16.1.4, React 19.2.3, next-intl 4.7.0, Tailwind CSS 4.1.18, clsx, tailwind-merge, react-magic-motion (001-update-project-docs)
+- Static JSON files (`src/lib/data/`) behind service functions (BFF pattern); no database for MVP (001-update-project-docs)
+
+## Recent Changes
+- 001-update-project-docs: Added TypeScript 5.x (strict mode, `noUncheckedIndexedAccess`) + Next.js 16.1.4, React 19.2.3, next-intl 4.7.0, Tailwind CSS 4.1.18, clsx, tailwind-merge, react-magic-motion
