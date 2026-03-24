@@ -46,3 +46,6 @@ CLAUDE.local.md
 !.claude/skills/**
 !.claude/rules/
 !.claude/rules/**
+
+# opencode
+.opencode/worktrees
