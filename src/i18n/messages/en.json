@@ -6,7 +6,7 @@
   },
   "nav": {
     "home": "Home",
-    "gallery": "Gallery",
+    "projects": "Projects",
     "about": "About Me",
     "contact": "Contact"
   },
@@ -152,7 +152,7 @@
     "description": "Urban art that transforms spaces and tells stories through color and form.",
     "linksTitle": "Links",
     "links": {
-      "gallery": "Gallery",
+      "projects": "Projects",
       "about": "About Me",
       "contact": "Contact"
     },

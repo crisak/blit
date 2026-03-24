@@ -6,7 +6,7 @@
   },
   "nav": {
     "home": "Inicio",
-    "gallery": "Galería",
+    "projects": "Proyectos",
     "about": "Sobre Mí",
     "contact": "Contacto"
   },
@@ -152,7 +152,7 @@
     "description": "Arte urbano que transforma espacios y cuenta historias a través del color y la forma.",
     "linksTitle": "Enlaces",
     "links": {
-      "gallery": "Galería",
+      "projects": "Proyectos",
       "about": "Sobre Mí",
       "contact": "Contacto"
     },

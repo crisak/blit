@@ -47,8 +47,8 @@ export function HeroSection() {
 
         {/* CTA Buttons with animation */}
         <div className="animation-delay-400 animate-fade-in flex flex-col justify-center gap-4 sm:flex-row">
-          <Link href="/gallery">
-            <Button size="lg" variant="primary">
+          <Link href="/projects">
+            <Button size="lg" variant="default">
               {t('cta.gallery')}
             </Button>
           </Link>

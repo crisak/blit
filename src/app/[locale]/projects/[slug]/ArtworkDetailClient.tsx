@@ -22,7 +22,7 @@ export function ArtworkDetailClient({ artwork, locale, siteUrl }: ArtworkDetailC
   const [viewerOpen, setViewerOpen] = useState(false)
 
   const currentImage = artwork.images[currentImageIndex]
-  const shareUrl = `${siteUrl}/${locale}/gallery/${artwork.slug}`
+  const shareUrl = `${siteUrl}/${locale}/projects/${artwork.slug}`
 
   const getCategoryLabel = (category: string) => {
     return tFilters(`categories.${category}` as Parameters<typeof tFilters>[0]) || category
@@ -36,7 +36,7 @@ export function ArtworkDetailClient({ artwork, locale, siteUrl }: ArtworkDetailC
     <>
       {/* Back link */}
       <Link
-        href="/gallery"
+        href="/projects"
         className="mb-8 inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-white"
       >
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

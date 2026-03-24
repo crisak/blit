@@ -30,7 +30,7 @@ export function FeaturedWorks() {
 
         {/* View All Button */}
         <div className="mt-12 text-center">
-          <Link href="/gallery">
+          <Link href="/projects">
             <Button size="lg" variant="secondary">
               {t('featured.viewAll')}
             </Button>

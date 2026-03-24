@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = []
 
   // Static pages per locale
-  const staticPages = ['', '/gallery', '/about', '/contact']
+  const staticPages = ['', '/projects', '/about', '/contact']
 
   for (const page of staticPages) {
     for (const locale of routing.locales) {
@@ -22,8 +22,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       entries.push({
         url: `${siteUrl}/${locale}${page}`,
         lastModified: new Date(),
-        changeFrequency: page === '' ? 'weekly' : page === '/gallery' ? 'daily' : 'monthly',
-        priority: page === '' ? 1.0 : page === '/gallery' ? 0.9 : 0.7,
+        changeFrequency: page === '' ? 'weekly' : page === '/projects' ? 'daily' : 'monthly',
+        priority: page === '' ? 1.0 : page === '/projects' ? 0.9 : 0.7,
         alternates: { languages: alternates },
       })
     }
@@ -34,11 +34,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const locale of routing.locales) {
       const alternates: Record<string, string> = {}
       for (const altLocale of routing.locales) {
-        alternates[altLocale] = `${siteUrl}/${altLocale}/gallery/${artwork.slug}`
+        alternates[altLocale] = `${siteUrl}/${altLocale}/projects/${artwork.slug}`
       }
 
       entries.push({
-        url: `${siteUrl}/${locale}/gallery/${artwork.slug}`,
+        url: `${siteUrl}/${locale}/projects/${artwork.slug}`,
         lastModified: new Date(artwork.updatedAt),
         changeFrequency: 'monthly',
         priority: artwork.featured ? 0.8 : 0.6,
