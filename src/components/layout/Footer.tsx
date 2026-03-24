@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils/cn'
 const socialLinks = [
   {
     name: 'Instagram',
-    href: 'https://instagram.com',
+    href: 'https://www.instagram.com/blito.col/',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -18,8 +18,8 @@ const socialLinks = [
     ),
   },
   {
-    name: 'Twitter',
-    href: 'https://twitter.com',
+    name: 'Threads',
+    href: 'https://www.threads.net/@blito.col',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -27,13 +27,13 @@ const socialLinks = [
         fill="currentColor"
         viewBox="0 0 24 24"
       >
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 6.74 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.186.408-2.167 1.41-2.94.915-.707 2.188-1.08 3.618-1.08.237 0 .477.014.717.04 1.68.16 3.139 1.044 4.154 2.507l1.735-1.735c.349-2.553-.17-4.542-1.598-6.116-1.448-1.596-3.615-2.433-6.44-2.486C9.637 1.83 7.164 3.32 5.889 5.65c-1.515 2.77-1.566 6.07-.142 9.29 1.424 3.22 3.933 5.58 7.07 6.628 2.708.902 5.09.745 7.078-.468 1.017-.62 1.878-1.483 2.555-2.558l2.028 2.028c-1.192 1.672-2.942 3.006-5.193 3.84-2.023.747-4.197 1.137-6.39 1.145z" />
       </svg>
     ),
   },
   {
-    name: 'YouTube',
-    href: 'https://youtube.com',
+    name: 'Facebook',
+    href: 'https://www.facebook.com/libreton94',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ const socialLinks = [
         fill="currentColor"
         viewBox="0 0 24 24"
       >
-        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
       </svg>
     ),
   },
@@ -53,6 +53,12 @@ const footerLinks = [
   { href: '/contact', labelKey: 'links.contact' },
 ] as const
 
+const collectives = [
+  { name: 'Ilegales', href: 'https://www.instagram.com/ilegales.col/', isCommerce: true },
+  { name: 'Sabor Latino Crew', href: 'https://www.instagram.com/saborlatinocrewoficial/' },
+  { name: 'Sabor Latino Callejero', href: 'https://www.instagram.com/saborlatinocallejero/' },
+] as const
+
 export function Footer() {
   const t = useTranslations('footer')
   const currentYear = new Date().getFullYear()
@@ -60,7 +66,7 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-gray-800 bg-gray-950">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="inline-block group transition-all duration-300">
@@ -75,6 +81,22 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-gray-500 max-w-xs leading-relaxed">{t('description')}</p>
+            <a
+              href="https://www.ilegales.co"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-accent-pink/20 px-3 py-1 text-xs font-medium text-accent-pink transition-colors hover:bg-accent-pink/30"
+            >
+              <span>Tienda</span>
+              <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
           </div>
 
           {/* Links */}
@@ -95,6 +117,36 @@ export function Footer() {
                   >
                     {t(link.labelKey)}
                   </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Collectives */}
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-600 mb-4">
+              Colectivos
+            </h3>
+            <ul className="space-y-3">
+              {collectives.map((collective) => (
+                <li key={collective.name}>
+                  <a
+                    href={collective.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      'inline-flex items-center gap-1 text-sm text-gray-400',
+                      'transition-all duration-200',
+                      'hover:text-white'
+                    )}
+                  >
+                    <span>{collective.name}</span>
+                    {'isCommerce' in collective && collective.isCommerce && (
+                      <span className="rounded bg-accent-pink/20 px-1.5 py-0.5 text-[10px] font-medium text-accent-pink">
+                        tienda
+                      </span>
+                    )}
+                  </a>
                 </li>
               ))}
             </ul>
