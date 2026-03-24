@@ -1,111 +1,60 @@
-'use client'
+"use client"
 
-import { forwardRef, type ButtonHTMLAttributes } from 'react'
-import { cn } from '@/lib/utils/cn'
+import { Button as ButtonPrimitive } from "@base-ui/react/button"
+import { cva, type VariantProps } from "class-variance-authority"
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'link' | 'outline'
-type ButtonSize = 'sm' | 'md' | 'lg' | 'icon' | 'icon-sm' | 'icon-xs' | 'icon-lg'
+import { cn } from "@/lib/utils"
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant
-  size?: ButtonSize
-  isLoading?: boolean
-}
-
-const variantStyles: Record<ButtonVariant, string> = {
-  primary: [
-    'bg-white text-gray-950',
-    'hover:bg-gray-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]',
-    'active:scale-[0.98] active:bg-gray-300',
-  ].join(' '),
-  secondary: [
-    'bg-gray-900 border border-gray-800 text-gray-100',
-    'hover:bg-gray-800 hover:border-gray-700 hover:text-white',
-    'active:scale-[0.98] active:bg-gray-700',
-  ].join(' '),
-  ghost: [
-    'bg-transparent text-gray-400',
-    'hover:bg-gray-900 hover:text-white',
-    'active:bg-gray-800',
-  ].join(' '),
-  danger: [
-    'bg-red-600 text-white',
-    'hover:bg-red-500 hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]',
-    'active:scale-[0.98] active:bg-red-700',
-  ].join(' '),
-  link: 'text-primary underline-offset-4 hover:underline bg-transparent',
-  outline: [
-    'border border-gray-700 bg-transparent text-gray-200',
-    'hover:bg-gray-800 hover:text-white',
-    'active:bg-gray-700',
-  ].join(' '),
-}
-
-const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-5 py-2.5 text-base',
-  lg: 'px-8 py-3.5 text-lg',
-  icon: 'size-10',
-  'icon-sm': 'size-8',
-  'icon-xs': 'size-6',
-  'icon-lg': 'size-12',
-}
-
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant = 'primary',
-      size = 'md',
-      isLoading = false,
-      disabled,
-      children,
-      ...props
+const buttonVariants = cva(
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
+        outline:
+          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
+        ghost:
+          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
+        destructive:
+          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default:
+          "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+        xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
+        icon: "size-8",
+        "icon-xs":
+          "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
+        "icon-sm":
+          "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
+        "icon-lg": "size-9",
+      },
     },
-    ref
-  ) => {
-    return (
-      <button
-        ref={ref}
-        disabled={disabled || isLoading}
-        className={cn(
-          'inline-flex items-center justify-center gap-2 rounded-lg font-medium',
-          'transition-all duration-200 ease-out',
-          'focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950',
-          'disabled:pointer-events-none disabled:opacity-40',
-          variantStyles[variant],
-          sizeStyles[size],
-          className
-        )}
-        {...props}
-      >
-        {isLoading && (
-          <svg
-            className="h-4 w-4 animate-spin"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            />
-          </svg>
-        )}
-        {children}
-      </button>
-    )
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
   }
 )
 
-Button.displayName = 'Button'
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  ...props
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+  return (
+    <ButtonPrimitive
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+}
+
+export { Button, buttonVariants }
