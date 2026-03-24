@@ -32,32 +32,37 @@ pnpm build         # Production build
 
 ### Expected build output
 
-| Page | Rendering | Symbol |
-|------|-----------|--------|
-| /[locale] (Home) | SSG | ● (Static) |
-| /[locale]/gallery | SSR | ƒ (Dynamic) |
-| /[locale]/gallery/[slug] | ISR | ● (Static, revalidate) |
-| /[locale]/about | SSG | ● (Static) |
-| /[locale]/contact | SSG | ● (Static) |
-| /api/artworks | Dynamic | ƒ (Dynamic) |
-| /api/contact | Dynamic | ƒ (Dynamic) |
-| /sitemap.xml | Dynamic | ƒ (Dynamic) |
+| Page                      | Rendering | Symbol                 |
+| ------------------------- | --------- | ---------------------- |
+| /[locale] (Home)          | SSG       | ● (Static)             |
+| /[locale]/projects        | SSR       | ƒ (Dynamic)            |
+| /[locale]/projects/[slug] | ISR       | ● (Static, revalidate) |
+| /[locale]/map             | SSR       | ƒ (Dynamic)            |
+| /[locale]/about           | SSG       | ● (Static)             |
+| /[locale]/contact         | SSG       | ● (Static)             |
+| /api/projects             | Dynamic   | ƒ (Dynamic)            |
+| /api/projects/[slug]      | Dynamic   | ƒ (Dynamic)            |
+| /api/map/points           | Dynamic   | ƒ (Dynamic)            |
+| /api/contact              | Dynamic   | ƒ (Dynamic)            |
+| /sitemap.xml              | Dynamic   | ƒ (Dynamic)            |
 
 ## Key URLs
 
-| URL | Description |
-|-----|-------------|
-| /es | Home page (Spanish) |
-| /en | Home page (English) |
-| /es/gallery | Gallery with filters |
-| /es/gallery/[slug] | Artwork detail |
-| /es/about | About the artist |
-| /es/contact | Contact form |
-| /api/artworks | Artworks API |
-| /api/artworks/[slug] | Single artwork API |
-| /api/contact | Contact submission (POST) |
-| /sitemap.xml | Dynamic sitemap |
-| /robots.txt | Robots directives |
+| URL                  | Description                      |
+| -------------------- | -------------------------------- |
+| /es                  | Home page (Spanish)              |
+| /en                  | Home page (English)              |
+| /es/projects         | Projects gallery with filters    |
+| /es/projects/[slug]  | Project detail                   |
+| /es/map              | Interactive artist footprint map |
+| /es/about            | About the artist                 |
+| /es/contact          | Contact form                     |
+| /api/projects        | Projects API                     |
+| /api/projects/[slug] | Single project API               |
+| /api/map/points      | Map points API                   |
+| /api/contact         | Contact submission (POST)        |
+| /sitemap.xml         | Dynamic sitemap                  |
+| /robots.txt          | Robots directives                |
 
 ## Validation Checklist
 
@@ -67,9 +72,10 @@ After implementation, verify:
 2. `pnpm lint` — zero errors
 3. `pnpm build` — successful, rendering strategies match table above
 4. Navigate all pages in both ES and EN
-5. Gallery filters work (category, technique, city, orientation, search)
-6. Artwork detail shows full info, image zoom, related works, share buttons
-7. Contact form validates and submits
-8. 404 page shows on invalid URLs
-9. No "shop", "tienda", "cart", "product" references in codebase
-10. Lighthouse audit: Performance >90, SEO >95
+5. Projects gallery filters work (category, city, tags, search)
+6. Project detail shows full info, image gallery, palette, related works, map link
+7. Map displays all project points with clustering
+8. Contact form validates and submits
+9. 404 page shows on invalid URLs
+10. No "shop", "tienda", "cart", "product", "ecommerce" references in codebase
+11. Lighthouse audit: Performance >85, SEO >95

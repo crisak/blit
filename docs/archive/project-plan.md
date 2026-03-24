@@ -1,8 +1,13 @@
 # Planificación del Proyecto: Portafolio Web para Grafitero
 
+> **⚠️ ARCHIVADO - SUPERSEDIDO POR PRD.md**
+> Este documento ha sido reemplazado por `docs/PRD.md` (v2.0 MVP).
+> El PRD tiene prioridad sobre este documento. No utilizar como referencia.
+> Fecha de archivado: Marzo 2026
+
 ## 📋 Información General
 
-**Tipo de Proyecto:** Portafolio Web + E-commerce para Artista Grafitero
+**Tipo de Proyecto:** ~~Portafolio Web + E-commerce para Artista Grafitero~~ → Portafolio Web (e-commerce OUT del MVP según PRD v2.0)
 **Objetivo Principal:** Aprender Next.js (última versión) mediante implementación práctica de todas sus features
 **Stack Principal:** Next.js 15+ + React 19+ + TypeScript + pnpm
 **Estado:** Fase 2 Completada (14%)
@@ -13,6 +18,7 @@
 ## 🎯 Objetivos del Proyecto
 
 ### Objetivos de Aprendizaje
+
 - **Dominar todas las estrategias de renderizado de Next.js** (SSR, SSG, ISR, Streaming)
 - Implementar React Server Components y Client Components correctamente
 - Utilizar App Router con todas sus capacidades
@@ -23,6 +29,7 @@
 - Aplicar arquitectura limpia y patrones escalables
 
 ### Objetivos Funcionales
+
 - Crear un portafolio profesional para mostrar obras de arte urbano
 - Implementar tienda online para venta de productos
 - Proporcionar sistema de filtros avanzado para búsqueda de obras
@@ -35,6 +42,7 @@
 ## 🏗️ Stack Técnico Completo
 
 ### Core Stack
+
 ```
 - Runtime: Node.js LTS (v20+)
 - Framework: Next.js 15+ (App Router)
@@ -46,27 +54,32 @@
 ### Librerías Principales
 
 #### Styling & Animations
+
 - **Tailwind CSS 4+** - Utility-first CSS framework
 - **react-magic-motion** - Animaciones declarativas (reemplaza GSAP)
 - **CSS Animations** - Para transiciones y efectos simples
 
 #### Internacionalización
+
 - **next-intl** - Solución i18n para Next.js App Router
 - Soporte: Español (default) e Inglés
 
 #### Optimización de Imágenes
+
 - **next/image** - Componente optimizado de Next.js
 - **sharp** - Procesamiento de imágenes (built-in Next.js)
 - **Lazy loading** - Carga diferida nativa
 - **Blur placeholder** - Placeholders con efecto blur
 
 #### Development Tools
+
 - **ESLint** - Linting
 - **Prettier** - Formateo de código
 - **TypeScript Strict Mode** - Tipado estricto
 - **Husky** - Git hooks
 
 #### Database Simulation
+
 - **JSON files** - Mocks de datos
 - **Simulated latency** - setTimeout para simular queries reales
 
@@ -209,6 +222,7 @@ next-renders/
 ### Documentación Detallada en `docs/rendering-strategies.md`
 
 #### 📄 Páginas con SSG (Static Site Generation)
+
 **Cuándo:** Contenido que raramente cambia
 
 1. **Home (`/[locale]/page.tsx`)**
@@ -229,6 +243,7 @@ next-renders/
    - **Implementación:** `force-static`
 
 #### 🔄 Páginas con ISR (Incremental Static Regeneration)
+
 **Cuándo:** Contenido que cambia periódicamente
 
 1. **Artwork Detail (`/[locale]/gallery/[slug]/page.tsx`)**
@@ -236,11 +251,11 @@ next-renders/
    - **Justificación:** Obras pueden actualizarse, pero no constantemente
    - **Implementación:**
      ```typescript
-     export const revalidate = 3600; // 1 hora
+     export const revalidate = 3600 // 1 hora
      export async function generateStaticParams() {
        // Pre-generar las 50 obras más populares
-       const artworks = await getPopularArtworks(50);
-       return artworks.map((art) => ({ slug: art.slug }));
+       const artworks = await getPopularArtworks(50)
+       return artworks.map((art) => ({ slug: art.slug }))
      }
      ```
    - **Beneficios:** Fast first load + contenido relativamente fresco
@@ -250,14 +265,15 @@ next-renders/
    - **Justificación:** Inventario y precios pueden cambiar
    - **Implementación:**
      ```typescript
-     export const revalidate = 1800; // 30 minutos
+     export const revalidate = 1800 // 30 minutos
      export async function generateStaticParams() {
-       const products = await getAvailableProducts();
-       return products.map((p) => ({ productId: p.id }));
+       const products = await getAvailableProducts()
+       return products.map((p) => ({ productId: p.id }))
      }
      ```
 
 #### ⚡ Páginas con SSR (Server-Side Rendering)
+
 **Cuándo:** Contenido dinámico o personalizado
 
 1. **Gallery with Filters (`/[locale]/gallery/page.tsx`)**
@@ -299,6 +315,7 @@ next-renders/
      ```
 
 #### 🌊 Streaming con Suspense
+
 **Implementación en páginas SSR:**
 
 ```typescript
@@ -326,20 +343,21 @@ export default function GalleryPage() {
 ```
 
 #### 🔌 API Routes (Dynamic)
+
 Todas las API routes son dinámicas por naturaleza:
 
 ```typescript
 // app/api/artworks/route.ts
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic'
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const artworks = await getArtworks(searchParams);
+  const { searchParams } = new URL(request.url)
+  const artworks = await getArtworks(searchParams)
 
   // Simular latencia de DB
-  await simulateLatency(100);
+  await simulateLatency(100)
 
-  return Response.json(artworks);
+  return Response.json(artworks)
 }
 ```
 
@@ -352,19 +370,19 @@ export async function GET(request: Request) {
 ```css
 :root {
   /* Dark Base - Escala de grises elegante */
-  --bg-primary: #030712;        /* gray-950 */
-  --bg-secondary: #111827;      /* gray-900 */
-  --bg-tertiary: #1f2937;       /* gray-800 */
+  --bg-primary: #030712; /* gray-950 */
+  --bg-secondary: #111827; /* gray-900 */
+  --bg-tertiary: #1f2937; /* gray-800 */
 
   /* Accent Colors - Tonos neutros con sutiles acentos */
-  --accent-light: #f9fafb;      /* gray-50 */
-  --accent-medium: #9ca3af;     /* gray-400 */
-  --accent-border: #374151;     /* gray-700 */
+  --accent-light: #f9fafb; /* gray-50 */
+  --accent-medium: #9ca3af; /* gray-400 */
+  --accent-border: #374151; /* gray-700 */
 
   /* Text */
   --text-primary: #ffffff;
-  --text-secondary: #d1d5db;    /* gray-300 */
-  --text-muted: #6b7280;        /* gray-500 */
+  --text-secondary: #d1d5db; /* gray-300 */
+  --text-muted: #6b7280; /* gray-500 */
 
   /* Overlays */
   --overlay-dark: rgba(3, 7, 18, 0.85);
@@ -405,27 +423,27 @@ export async function GET(request: Request) {
 ```typescript
 interface FilterOptions {
   // Orientación
-  orientation?: 'vertical' | 'horizontal' | 'square';
+  orientation?: 'vertical' | 'horizontal' | 'square'
 
   // Técnicas
-  techniques?: string[]; // ['spray', 'stencil', 'mural', 'canvas']
+  techniques?: string[] // ['spray', 'stencil', 'mural', 'canvas']
 
   // Ubicación
-  location?: string; // Ciudad donde se realizó
-  isPaid?: boolean; // Trabajo pagado vs personal
+  location?: string // Ciudad donde se realizó
+  isPaid?: boolean // Trabajo pagado vs personal
 
   // Visual
-  colors?: string[]; // Colores dominantes
-  size?: 'small' | 'medium' | 'large' | 'mural';
+  colors?: string[] // Colores dominantes
+  size?: 'small' | 'medium' | 'large' | 'mural'
 
   // Categorías
-  categories?: string[]; // ['graffiti', 'painting', 'tattoo', 'photography']
+  categories?: string[] // ['graffiti', 'painting', 'tattoo', 'photography']
 
   // Artista (para futuro multi-artista)
-  artist?: string;
+  artist?: string
 
   // Búsqueda
-  searchTerm?: string;
+  searchTerm?: string
 }
 ```
 
@@ -433,27 +451,30 @@ interface FilterOptions {
 
 ```typescript
 // hooks/useFilters.ts (Client Component)
-'use client';
+'use client'
 
 export function useFilters() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
-  const updateFilters = useCallback((newFilters: Partial<FilterOptions>) => {
-    const params = new URLSearchParams(searchParams);
+  const updateFilters = useCallback(
+    (newFilters: Partial<FilterOptions>) => {
+      const params = new URLSearchParams(searchParams)
 
-    Object.entries(newFilters).forEach(([key, value]) => {
-      if (value) {
-        params.set(key, Array.isArray(value) ? value.join(',') : value);
-      } else {
-        params.delete(key);
-      }
-    });
+      Object.entries(newFilters).forEach(([key, value]) => {
+        if (value) {
+          params.set(key, Array.isArray(value) ? value.join(',') : value)
+        } else {
+          params.delete(key)
+        }
+      })
 
-    router.push(`?${params.toString()}`, { scroll: false });
-  }, [searchParams, router]);
+      router.push(`?${params.toString()}`, { scroll: false })
+    },
+    [searchParams, router]
+  )
 
-  return { filters: Object.fromEntries(searchParams), updateFilters };
+  return { filters: Object.fromEntries(searchParams), updateFilters }
 }
 ```
 
@@ -464,6 +485,7 @@ export function useFilters() {
 ### Estructura de Datos
 
 #### `lib/data/artworks.json`
+
 ```json
 {
   "artworks": [
@@ -490,10 +512,7 @@ export function useFilters() {
         "main": "/images/gallery/urban-dreams-main.jpg",
         "thumbnail": "/images/gallery/urban-dreams-thumb.jpg",
         "blur": "/images/placeholders/urban-dreams-blur.jpg",
-        "gallery": [
-          "/images/gallery/urban-dreams-1.jpg",
-          "/images/gallery/urban-dreams-2.jpg"
-        ]
+        "gallery": ["/images/gallery/urban-dreams-1.jpg", "/images/gallery/urban-dreams-2.jpg"]
       },
       "dimensions": {
         "width": 1200,
@@ -513,6 +532,7 @@ export function useFilters() {
 ```
 
 #### `lib/data/products.json`
+
 ```json
 {
   "products": [
@@ -559,26 +579,26 @@ export function useFilters() {
 ```typescript
 // lib/utils/delay.ts
 export async function simulateLatency(min: number = 50, max: number = 300) {
-  const delay = Math.random() * (max - min) + min;
-  await new Promise(resolve => setTimeout(resolve, delay));
+  const delay = Math.random() * (max - min) + min
+  await new Promise((resolve) => setTimeout(resolve, delay))
 }
 
 // lib/services/artworkService.ts
 export async function getArtworks(filters?: FilterOptions): Promise<Artwork[]> {
   // Simular latencia de query DB
-  await simulateLatency(100, 500);
+  await simulateLatency(100, 500)
 
-  const data = await import('@/lib/data/artworks.json');
-  let artworks = data.artworks;
+  const data = await import('@/lib/data/artworks.json')
+  let artworks = data.artworks
 
   // Aplicar filtros
   if (filters?.category) {
-    artworks = artworks.filter(a => a.category === filters.category);
+    artworks = artworks.filter((a) => a.category === filters.category)
   }
 
   // ... más filtros
 
-  return artworks;
+  return artworks
 }
 ```
 
@@ -589,56 +609,59 @@ export async function getArtworks(filters?: FilterOptions): Promise<Artwork[]> {
 ### Configuración next-intl
 
 #### `i18n/request.ts`
+
 ```typescript
-import { getRequestConfig } from 'next-intl/server';
-import { routing } from './routing';
+import { getRequestConfig } from 'next-intl/server'
+import { routing } from './routing'
 
 export default getRequestConfig(async ({ locale }) => {
   if (!routing.locales.includes(locale as any)) {
-    locale = routing.defaultLocale;
+    locale = routing.defaultLocale
   }
 
   return {
-    messages: (await import(`./messages/${locale}.json`)).default
-  };
-});
+    messages: (await import(`./messages/${locale}.json`)).default,
+  }
+})
 ```
 
 #### `i18n/routing.ts`
+
 ```typescript
-import { defineRouting } from 'next-intl/routing';
-import { createNavigation } from 'next-intl/navigation';
+import { defineRouting } from 'next-intl/routing'
+import { createNavigation } from 'next-intl/navigation'
 
 export const routing = defineRouting({
   locales: ['es', 'en'],
   defaultLocale: 'es',
-  localePrefix: 'always' // Siempre incluir locale en URL para evitar bugs en desarrollo
-});
+  localePrefix: 'always', // Siempre incluir locale en URL para evitar bugs en desarrollo
+})
 
-export const { Link, redirect, usePathname, useRouter, getPathname } =
-  createNavigation(routing);
+export const { Link, redirect, usePathname, useRouter, getPathname } = createNavigation(routing)
 ```
 
 > **Nota:** Se cambió `localePrefix` de `'as-needed'` a `'always'` para evitar bugs de caching del router en modo desarrollo.
 
 #### `middleware.ts`
-```typescript
-import createMiddleware from 'next-intl/middleware';
-import { routing } from './src/i18n/routing';
 
-export default createMiddleware(routing);
+```typescript
+import createMiddleware from 'next-intl/middleware'
+import { routing } from './src/i18n/routing'
+
+export default createMiddleware(routing)
 
 export const config = {
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
-};
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
+}
 ```
 
 #### `src/app/page.tsx` (Root redirect)
+
 ```typescript
-import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation'
 
 export default function RootPage() {
-  redirect('/es');
+  redirect('/es')
 }
 ```
 
@@ -647,6 +670,7 @@ export default function RootPage() {
 ### Traducciones
 
 #### `i18n/messages/es.json`
+
 ```json
 {
   "nav": {
@@ -707,18 +731,18 @@ export function ArtworkImage({ artwork }: { artwork: Artwork }) {
 ```typescript
 // Script para generar placeholders (ejecutar en build)
 // scripts/generate-placeholders.ts
-import sharp from 'sharp';
-import fs from 'fs/promises';
-import path from 'path';
+import sharp from 'sharp'
+import fs from 'fs/promises'
+import path from 'path'
 
 async function generateBlurPlaceholder(imagePath: string) {
   const buffer = await sharp(imagePath)
     .resize(20) // Muy pequeño
     .blur()
-    .toBuffer();
+    .toBuffer()
 
-  const base64 = `data:image/jpeg;base64,${buffer.toString('base64')}`;
-  return base64;
+  const base64 = `data:image/jpeg;base64,${buffer.toString('base64')}`
+  return base64
 }
 ```
 
@@ -733,9 +757,9 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60,
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
 ```
 
 ---
@@ -769,25 +793,27 @@ export default nextConfig;
    - Componentes dinámicos con `next/dynamic`
 
 2. **Font Optimization**
+
    ```typescript
    // app/[locale]/layout.tsx
-   import { Inter, Montserrat } from 'next/font/google';
+   import { Inter, Montserrat } from 'next/font/google'
 
    const inter = Inter({
      subsets: ['latin'],
      display: 'swap',
-     variable: '--font-inter'
-   });
+     variable: '--font-inter',
+   })
 
    const montserrat = Montserrat({
      subsets: ['latin'],
      weight: ['700', '800'],
      display: 'swap',
-     variable: '--font-montserrat'
-   });
+     variable: '--font-montserrat',
+   })
    ```
 
 3. **Suspense Boundaries Estratégicos**
+
    ```typescript
    // Cargar filtros sin bloquear contenido principal
    <Suspense fallback={null}>
@@ -796,6 +822,7 @@ export default nextConfig;
    ```
 
 4. **Prefetching Inteligente**
+
    ```typescript
    // next-intl Link hace prefetch automático
    <Link href="/gallery" prefetch={true}>
@@ -804,14 +831,15 @@ export default nextConfig;
    ```
 
 5. **Route Segment Config**
+
    ```typescript
    // Para páginas estáticas
-   export const dynamic = 'force-static';
-   export const revalidate = false;
+   export const dynamic = 'force-static'
+   export const revalidate = false
 
    // Para páginas dinámicas optimizadas
-   export const dynamic = 'force-dynamic';
-   export const fetchCache = 'force-no-store';
+   export const dynamic = 'force-dynamic'
+   export const fetchCache = 'force-no-store'
    ```
 
 ---
@@ -822,16 +850,16 @@ export default nextConfig;
 
 ```typescript
 // app/[locale]/gallery/[slug]/page.tsx
-import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export async function generateMetadata({
-  params
+  params,
 }: {
   params: { locale: string; slug: string }
 }): Promise<Metadata> {
-  const artwork = await getArtworkBySlug(params.slug);
-  const t = await getTranslations({ locale: params.locale });
+  const artwork = await getArtworkBySlug(params.slug)
+  const t = await getTranslations({ locale: params.locale })
 
   return {
     title: `${artwork.title[params.locale]} | ${t('site.name')}`,
@@ -845,7 +873,7 @@ export async function generateMetadata({
           width: 1200,
           height: 630,
           alt: artwork.title[params.locale],
-        }
+        },
       ],
       locale: params.locale,
       type: 'website',
@@ -859,11 +887,11 @@ export async function generateMetadata({
     alternates: {
       canonical: `/${params.locale}/gallery/${params.slug}`,
       languages: {
-        'es': `/es/gallery/${params.slug}`,
-        'en': `/en/gallery/${params.slug}`,
-      }
-    }
-  };
+        es: `/es/gallery/${params.slug}`,
+        en: `/en/gallery/${params.slug}`,
+      },
+    },
+  }
 }
 ```
 
@@ -871,12 +899,12 @@ export async function generateMetadata({
 
 ```typescript
 // app/sitemap.ts
-import type { MetadataRoute } from 'next';
-import { getArtworks } from '@/lib/services/artworkService';
+import type { MetadataRoute } from 'next'
+import { getArtworks } from '@/lib/services/artworkService'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://tu-dominio.com';
-  const artworks = await getArtworks();
+  const baseUrl = 'https://tu-dominio.com'
+  const artworks = await getArtworks()
 
   const artworkUrls = artworks.flatMap((artwork) => [
     {
@@ -888,10 +916,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         languages: {
           es: `${baseUrl}/es/gallery/${artwork.slug}`,
           en: `${baseUrl}/en/gallery/${artwork.slug}`,
-        }
-      }
-    }
-  ]);
+        },
+      },
+    },
+  ])
 
   return [
     {
@@ -901,7 +929,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     ...artworkUrls,
-  ];
+  ]
 }
 ```
 
@@ -909,7 +937,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 ```typescript
 // app/robots.ts
-import type { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -919,7 +947,7 @@ export default function robots(): MetadataRoute.Robots {
       disallow: ['/api/', '/_next/'],
     },
     sitemap: 'https://tu-dominio.com/sitemap.xml',
-  };
+  }
 }
 ```
 
@@ -928,10 +956,12 @@ export default function robots(): MetadataRoute.Robots {
 ## 🚀 Fases de Implementación
 
 ### Fase 1: Setup Inicial (Semana 1 - Días 1-3)
+
 **Duración:** 3 días
 **Prioridad:** CRÍTICA
 
 #### Tareas
+
 - [ ] Inicializar proyecto con Next.js 15+ usando pnpm
   ```bash
   pnpm create next-app@latest next-renders --typescript --tailwind --app --src-dir
@@ -946,6 +976,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Primer commit
 
 #### Entregables
+
 ✅ Proyecto inicializado y configurado
 ✅ Estructura de carpetas completa
 ✅ Configuraciones base funcionando
@@ -953,11 +984,13 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 2: Layout y Navegación (Semana 1 - Días 4-7)
+
 **Duración:** 4 días
 **Prioridad:** ALTA
 **Estado:** ✅ COMPLETADA
 
 #### Tareas
+
 - [x] Implementar layout raíz con i18n (`[locale]/layout.tsx`)
 - [x] Crear Header con navegación (Client Component)
 - [x] Implementar LanguageSwitcher con `router.refresh()` para fix de desarrollo
@@ -971,6 +1004,7 @@ export default function robots(): MetadataRoute.Robots {
 - [x] Crear root page redirect a `/es`
 
 #### Entregables
+
 ✅ Layout completo funcionando
 ✅ Navegación con i18n (funcionando en dev y prod)
 ✅ Componentes UI base con hover states
@@ -978,6 +1012,7 @@ export default function robots(): MetadataRoute.Robots {
 ✅ Paleta grayscale elegante implementada
 
 #### Notas Técnicas
+
 - **i18n bugs resueltos:** Switch de idioma, carga de EN, redirect de root
 - **GSAP reemplazado:** Ahora usa react-magic-motion y CSS animations
 - **Splash optimizado:** Solo se muestra en home page, no bloquea otras páginas
@@ -985,10 +1020,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 3: Home Page (SSG) (Semana 2 - Días 1-3)
+
 **Duración:** 3 días
 **Prioridad:** ALTA
 
 #### Tareas
+
 - [ ] Diseñar y maquetar Home Page
 - [ ] Implementar hero section con GSAP animations
 - [ ] Sección "Featured Works" (Grid de 6 obras destacadas)
@@ -1000,6 +1037,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Testing de performance (Lighthouse)
 
 #### Entregables
+
 ✅ Home page completamente estática (SSG)
 ✅ Animaciones funcionando
 ✅ Score Lighthouse >90
@@ -1007,10 +1045,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 4: Galería - Página Principal (SSR) (Semana 2 - Días 4-7)
+
 **Duración:** 4 días
 **Prioridad:** ALTA
 
 #### Tareas
+
 - [ ] Crear mock completo de artworks (30-50 obras)
 - [ ] Implementar `artworkService.ts` con latencia simulada
 - [ ] Crear página Gallery (`/[locale]/gallery/page.tsx`)
@@ -1025,6 +1065,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Testing de filtros
 
 #### Entregables
+
 ✅ Galería con SSR funcionando
 ✅ Filtros operativos
 ✅ Performance óptimo con streaming
@@ -1032,10 +1073,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 5: Galería - Detalle de Obra (ISR) (Semana 3 - Días 1-3)
+
 **Duración:** 3 días
 **Prioridad:** ALTA
 
 #### Tareas
+
 - [ ] Crear página detalle (`/[locale]/gallery/[slug]/page.tsx`)
 - [ ] Configurar ISR con `revalidate = 3600`
 - [ ] Implementar `generateStaticParams` para top 20 obras
@@ -1049,6 +1092,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Testing ISR (verificar revalidación)
 
 #### Entregables
+
 ✅ Página detalle con ISR
 ✅ ImageViewer funcional
 ✅ SEO completo
@@ -1056,10 +1100,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 6: Tienda - Página Principal (SSR) (Semana 3 - Días 4-7)
+
 **Duración:** 4 días
 **Prioridad:** ALTA
 
 #### Tareas
+
 - [ ] Crear mock de productos (20-30 productos)
 - [ ] Implementar `productService.ts`
 - [ ] Crear página Shop (`/[locale]/shop/page.tsx`)
@@ -1073,6 +1119,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Animaciones
 
 #### Entregables
+
 ✅ Tienda con SSR
 ✅ Filtros y sorting
 ✅ UI de e-commerce profesional
@@ -1080,10 +1127,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 7: Tienda - Detalle y Carrito (Semana 4 - Días 1-4)
+
 **Duración:** 4 días
 **Prioridad:** MEDIA-ALTA
 
 #### Tareas
+
 - [ ] Página detalle producto (ISR, revalidate 1800)
 - [ ] `generateStaticParams` para productos disponibles
 - [ ] Galería de imágenes del producto
@@ -1098,6 +1147,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Checkout placeholder (sin pago real)
 
 #### Entregables
+
 ✅ Detalle producto con ISR
 ✅ Carrito funcional
 ✅ Persistencia en LocalStorage
@@ -1105,10 +1155,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 8: Páginas Secundarias (SSG) (Semana 4 - Días 5-7)
+
 **Duración:** 3 días
 **Prioridad:** MEDIA
 
 #### Tareas
+
 - [ ] Página About (`/[locale]/about/page.tsx` - SSG)
   - Bio del artista
   - Trayectoria
@@ -1123,6 +1175,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Loading states
 
 #### Entregables
+
 ✅ About page completa
 ✅ Contact page con formulario
 ✅ Error handling
@@ -1130,10 +1183,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 9: API Routes (Semana 5 - Días 1-3)
+
 **Duración:** 3 días
 **Prioridad:** MEDIA
 
 #### Tareas
+
 - [ ] API Route: GET `/api/artworks` (con filtros)
 - [ ] API Route: GET `/api/artworks/[id]`
 - [ ] API Route: GET `/api/products` (con filtros)
@@ -1145,6 +1200,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Testing de APIs
 
 #### Entregables
+
 ✅ API Routes funcionando
 ✅ Validación implementada
 ✅ Documentación de endpoints
@@ -1152,10 +1208,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 10: Optimización de Imágenes (Semana 5 - Días 4-7)
+
 **Duración:** 4 días
 **Prioridad:** ALTA
 
 #### Tareas
+
 - [ ] Generar blur placeholders para todas las imágenes
 - [ ] Optimizar tamaños de imágenes (sharp script)
 - [ ] Configurar `next/image` con sizes óptimos
@@ -1167,6 +1225,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Verificar LCP < 2.5s
 
 #### Entregables
+
 ✅ Todas las imágenes optimizadas
 ✅ Blur placeholders generados
 ✅ LCP mejorado significativamente
@@ -1174,10 +1233,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 11: Animaciones con react-magic-motion y CSS (Semana 6 - Días 1-3)
+
 **Duración:** 3 días
 **Prioridad:** MEDIA
 
 #### Tareas
+
 - [ ] Configurar react-magic-motion para animaciones complejas
 - [ ] Gallery grid stagger animation con MagicMotion
 - [ ] Image hover effects con CSS transitions
@@ -1189,6 +1250,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Respetar `prefers-reduced-motion`
 
 #### Entregables
+
 ✅ Animaciones implementadas con react-magic-motion y CSS
 ✅ No impacto negativo en performance
 ✅ Bundle size optimizado (sin GSAP)
@@ -1198,10 +1260,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 12: SEO y Metadata (Semana 6 - Días 4-7)
+
 **Duración:** 4 días
 **Prioridad:** ALTA
 
 #### Tareas
+
 - [ ] Metadata dinámica en todas las páginas
 - [ ] Open Graph images personalizadas
 - [ ] Twitter Cards
@@ -1214,6 +1278,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Google Search Console setup
 
 #### Entregables
+
 ✅ SEO completo implementado
 ✅ Score SEO: 100/100
 ✅ Rich snippets funcionando
@@ -1221,10 +1286,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 13: Testing y QA (Semana 7 - Días 1-4)
+
 **Duración:** 4 días
 **Prioridad:** ALTA
 
 #### Tareas
+
 - [ ] Testing de todas las páginas en ambos idiomas
 - [ ] Verificar estrategias de renderizado
 - [ ] Testing de filtros exhaustivo
@@ -1238,6 +1305,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Verificar Core Web Vitals
 
 #### Entregables
+
 ✅ Todos los bugs críticos resueltos
 ✅ Lighthouse >95 en todas las categorías
 ✅ Responsive perfecto
@@ -1245,10 +1313,12 @@ export default function robots(): MetadataRoute.Robots {
 ---
 
 ### Fase 14: Documentación (Semana 7 - Días 5-7)
+
 **Duración:** 3 días
 **Prioridad:** ALTA
 
 #### Tareas
+
 - [ ] Crear `docs/architecture.md`
   - Estructura de carpetas explicada
   - Patrones utilizados
@@ -1268,6 +1338,7 @@ export default function robots(): MetadataRoute.Robots {
 - [ ] Comentarios en código complejo
 
 #### Entregables
+
 ✅ Documentación completa
 ✅ Código comentado apropiadamente
 ✅ README profesional
@@ -1323,6 +1394,7 @@ pnpm dlx husky init
 ## 📈 Métricas de Éxito
 
 ### Learning Goals Achievement
+
 - ✅ Implementar al menos 3 estrategias de renderizado diferentes
 - ✅ Usar Server Components y Client Components correctamente
 - ✅ Implementar ISR con revalidación
@@ -1331,6 +1403,7 @@ pnpm dlx husky init
 - ✅ Optimización de imágenes avanzada
 
 ### Performance Metrics
+
 ```
 Target Lighthouse Scores:
 - Performance: >95
@@ -1345,6 +1418,7 @@ Core Web Vitals:
 ```
 
 ### Code Quality
+
 - TypeScript strict mode sin errores
 - 0 ESLint errors
 - Código comentado en secciones complejas
@@ -1392,19 +1466,20 @@ Core Web Vitals:
 
 ## 🚨 Riesgos y Mitigaciones
 
-| Riesgo | Probabilidad | Impacto | Mitigación |
-|--------|--------------|---------|------------|
-| Over-engineering por querer usar todo | Alta | Medio | Mantener MVP claro, no forzar features |
-| Performance issues con GSAP | Media | Alto | Profiling constante, usar GPU acceleration |
-| Complejidad de filtros | Media | Medio | Empezar simple, iterar |
-| ISR no funcionando como esperado | Baja | Medio | Testing exhaustivo de revalidación |
-| Imágenes muy pesadas | Alta | Alto | Script de optimización obligatorio |
+| Riesgo                                | Probabilidad | Impacto | Mitigación                                 |
+| ------------------------------------- | ------------ | ------- | ------------------------------------------ |
+| Over-engineering por querer usar todo | Alta         | Medio   | Mantener MVP claro, no forzar features     |
+| Performance issues con GSAP           | Media        | Alto    | Profiling constante, usar GPU acceleration |
+| Complejidad de filtros                | Media        | Medio   | Empezar simple, iterar                     |
+| ISR no funcionando como esperado      | Baja         | Medio   | Testing exhaustivo de revalidación         |
+| Imágenes muy pesadas                  | Alta         | Alto    | Script de optimización obligatorio         |
 
 ---
 
 ## 📚 Referencias y Recursos
 
 ### Documentación Oficial
+
 - [Next.js 15 Docs](https://nextjs.org/docs)
 - [React 19 Docs](https://react.dev)
 - [next-intl Docs](https://next-intl-docs.vercel.app/)
@@ -1412,11 +1487,13 @@ Core Web Vitals:
 - [Tailwind CSS](https://tailwindcss.com/docs)
 
 ### Artículos Clave
+
 - [Next.js Rendering Strategies](https://nextjs.org/docs/app/building-your-application/rendering)
 - [Image Optimization Best Practices](https://nextjs.org/docs/app/building-your-application/optimizing/images)
 - [Core Web Vitals](https://web.dev/vitals/)
 
 ### Inspiración de Diseño
+
 - Dribbble: "graffiti portfolio"
 - Behance: "street art website"
 - Awwwards: Dark theme galleries
@@ -1426,6 +1503,7 @@ Core Web Vitals:
 ## ✅ Checklist Pre-Launch
 
 ### Funcionalidad
+
 - [ ] Todas las páginas accesibles
 - [ ] Filtros funcionando correctamente
 - [ ] Carrito persistiendo en LocalStorage
@@ -1434,6 +1512,7 @@ Core Web Vitals:
 - [ ] Todas las imágenes cargando
 
 ### Performance
+
 - [ ] Lighthouse >95 en todas las páginas
 - [ ] LCP <2.5s
 - [ ] CLS <0.1
@@ -1441,6 +1520,7 @@ Core Web Vitals:
 - [ ] Bundle size optimizado
 
 ### SEO
+
 - [ ] Todas las páginas tienen metadata
 - [ ] Sitemap.xml generándose
 - [ ] robots.txt configurado
@@ -1448,12 +1528,14 @@ Core Web Vitals:
 - [ ] hreflang tags presentes
 
 ### Accesibilidad
+
 - [ ] Navegación por teclado funciona
 - [ ] ARIA labels presentes
 - [ ] Contraste de colores suficiente
 - [ ] Screen reader friendly
 
 ### Documentación
+
 - [ ] README completo
 - [ ] architecture.md creado
 - [ ] rendering-strategies.md detallado
@@ -1464,6 +1546,7 @@ Core Web Vitals:
 ## 🎯 Próximos Pasos Inmediatos
 
 ### Esta Semana
+
 1. ✅ **Revisar este plan** con el equipo (tú)
 2. **Ejecutar comandos de setup**
    ```bash
@@ -1483,6 +1566,7 @@ Core Web Vitals:
 ## 📝 Notas Finales
 
 Este proyecto está diseñado específicamente para:
+
 - **Aprender haciendo**: Cada feature de Next.js se usa en un contexto real
 - **Best practices**: Arquitectura limpia, TypeScript estricto, código mantenible
 - **Portfolio real**: Resultado final es un sitio web profesional y usable
@@ -1502,6 +1586,7 @@ El enfoque es **progresivo y organizado**, con fases claras y entregables concre
 ## 📝 Changelog
 
 ### v2.1 (Enero 20, 2026)
+
 - ✅ Fase 2 completada con ajustes
 - Cambio de paleta de colores: graffiti neón → grayscale elegante
 - Reemplazo de GSAP por react-magic-motion
@@ -1510,6 +1595,7 @@ El enfoque es **progresivo y organizado**, con fases claras y entregables concre
 - Añadido `setRequestLocale` y `router.refresh()` para fix de desarrollo
 
 ### v2.0 (Enero 20, 2026)
+
 - Documento inicial de planificación
 - 14 fases definidas
 - Stack técnico completo
@@ -1519,6 +1605,7 @@ El enfoque es **progresivo y organizado**, con fases claras y entregables concre
 ## 🎨 Extras Opcionales (Post-MVP)
 
 Si el tiempo lo permite, considerar:
+
 - [ ] Dark/Light mode toggle
 - [ ] Admin panel para gestionar obras
 - [ ] Sistema de likes/favorites

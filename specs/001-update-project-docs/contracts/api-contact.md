@@ -2,18 +2,49 @@
 
 **Base path**: `/api/contact`
 
+> ⚠️ Updated per PRD v2.0 — segmented form with conditional fields.
+
 ## POST /api/contact
 
-Submits a contact form message.
+Submits a segmented contact form message.
 
 ### Request Body
 
+**Always required:**
+
 ```json
 {
-  "name": "string (min 2, max 100)",
+  "name": "string",
   "email": "string (valid email)",
-  "subject": "string (min 5, max 200)",
-  "message": "string (min 10, max 2000)"
+  "type": "mural_comercial | encargo | prensa | otro",
+  "message": "string"
+}
+```
+
+**Conditional fields by type:**
+
+| Type            | Additional Fields                                                         |
+| --------------- | ------------------------------------------------------------------------- |
+| mural_comercial | `location`, `dimensions`, `interior_exterior`, `timeline`, `budget_range` |
+| encargo         | `description`, `timeline`                                                 |
+| prensa          | `medium`, `request_type`, `deadline`                                      |
+| otro            | —                                                                         |
+
+### Full Example (mural_comercial)
+
+```json
+{
+  "name": "string",
+  "email": "string",
+  "type": "mural_comercial",
+  "message": "string",
+  "conditionalFields": {
+    "location": "string",
+    "dimensions": "string",
+    "interior_exterior": "interior | exterior",
+    "timeline": "string",
+    "budget_range": "string"
+  }
 }
 ```
 
@@ -21,10 +52,11 @@ Submits a contact form message.
 
 ```json
 {
-  "success": true,
-  "message": "Message sent successfully"
+  "success": true
 }
 ```
+
+Auto-response confirming receipt (48h).
 
 ### Response 400 (Validation Error)
 
@@ -35,10 +67,6 @@ Submits a contact form message.
     {
       "field": "email",
       "message": "Invalid email format"
-    },
-    {
-      "field": "name",
-      "message": "Name must be at least 2 characters"
     }
   ]
 }
@@ -48,12 +76,12 @@ Submits a contact form message.
 
 ```json
 {
-  "error": "Internal server error",
-  "message": "string"
+  "error": "Internal server error"
 }
 ```
 
 ## Notes
 
-- MVP: The handler validates input and logs the submission. No actual email delivery.
+- MVP: The handler validates input with Zod and logs the submission. No actual email delivery.
 - Future: The Go backend will handle email sending. The contract remains the same.
+- Contact WhatsApp: +57 312 357 4867 (persistent floating button site-wide)

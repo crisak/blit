@@ -1,7 +1,12 @@
 # TODO - Portafolio Web Grafitero con Next.js 16
 
-> **Objetivo:** Dominar Next.js 16+ implementando todas sus features en un proyecto real
-> **Progreso Total:** 4/14 fases completadas (29%)
+> **⚠️ ARCHIVADO - SUPERSEDIDO POR PRD.md**
+> Este documento ha sido reemplazado por `docs/PRD.md` (v2.0 MVP).
+> El PRD tiene prioridad sobre este documento. No utilizar como referencia.
+> Fecha de archivado: Marzo 2026
+
+> **Objetivo:** ~~Dominar Next.js 16+ implementando todas sus features en un proyecto real~~
+> **Progreso Total:** 4/14 fases completadas (29%) — fases de shop e-commerce removidas per PRD
 
 ---
 
@@ -25,14 +30,17 @@
 ---
 
 ## 🚀 FASE 1: Setup Inicial
+
 **Duración:** 3 días | **Prioridad:** CRÍTICA | **Estado:** ✅ **COMPLETADA**
 
 ### Tareas Principales
 
 - [x] **1.1** Inicializar proyecto Next.js 16+
+
   ```bash
   npm create next-app@latest . --typescript --tailwind --app --src-dir
   ```
+
   - ✅ Versión Next.js 16.1.4 instalada
   - ✅ React 19.2.3 instalado
   - ✅ Estructura con `src/app` directory confirmada
@@ -45,17 +53,21 @@
   - ✅ Compilación verificada sin errores
 
 - [x] **1.3** Instalar dependencias principales
+
   ```bash
   npm install next-intl react-magic-motion clsx tailwind-merge
   ```
+
   - ✅ next-intl@4.7.0 instalado
   - ✅ react-magic-motion instalado
   - ✅ clsx@2.1.1 y tailwind-merge@3.4.0 instalados
 
 - [x] **1.4** Instalar dependencias de desarrollo
+
   ```bash
   npm install -D eslint prettier eslint-config-prettier husky lint-staged @types/node
   ```
+
   - ✅ ESLint configurado con Next.js preset
   - ✅ `.prettierrc` creado con configuración
   - ✅ Tailwind CSS v4 (4.1.18) instalado
@@ -107,6 +119,7 @@
   - ⚠️ Turbopack con problemas de permisos en VM (solucionado removiendo flag)
 
 ### ✅ Criterios de Aceptación Fase 1
+
 - [x] Proyecto inicia sin errores con `npm run dev` ✅
 - [x] TypeScript compila sin errores ✅
 - [x] ESLint y Prettier funcionan correctamente ✅
@@ -118,6 +131,7 @@
 ### 📝 Notas Importantes de Fase 1
 
 **Tecnologías Instaladas:**
+
 - Next.js 16.1.4 (con Turbopack por defecto)
 - React 19.2.3
 - TypeScript 5.9.3
@@ -126,12 +140,14 @@
 - react-magic-motion
 
 **Desafíos Resueltos:**
+
 1. **Permisos pnpm:** No se pudo habilitar corepack, pero se configuró `packageManager: "pnpm@10.28.1"` en package.json
 2. **Tailwind v4:** Sintaxis completamente nueva (CSS-based config vs JS config)
 3. **next-intl config missing:** Se creó `i18n.ts` en root (requerido por next-intl)
 4. **Turbopack cache:** Problemas de permisos en VM, removido flag `--turbopack` del script dev
 
 **Archivos Clave Creados:**
+
 - `/i18n.ts` - Configuración next-intl (ROOT, no en src/)
 - `/middleware.ts` - i18n routing
 - `/src/i18n/routing.ts` - Definición de locales
@@ -141,11 +157,13 @@
 - `/docs/tailwind-v4-config.md` - Documentación de configuración
 
 **Pendiente para Usuario:**
+
 - Configurar Husky en su entorno local (si lo desea)
 
 ---
 
 ## 🎨 FASE 2: Layout y Navegación
+
 **Duración:** 4 días | **Prioridad:** ALTA | **Estado:** ✅ **COMPLETADA**
 
 ### Tareas Principales
@@ -211,16 +229,17 @@
   - ✅ `HomeContent.tsx` creado para integrar splash solo en home
 
 ### ✅ Criterios de Aceptación Fase 2
+
 - [x] Layout se renderiza correctamente en ambos idiomas ✅
 - [x] Navegación funciona sin errores ✅
 - [x] Cambio de idioma preserva la ruta ✅
 - [x] Header responsive (mobile + desktop) ✅
 - [x] Splash screen se muestra al cargar ✅
 
-
 ---
 
 ## 🏠 FASE 3: Home Page (SSG)
+
 **Duración:** 3 días | **Prioridad:** ALTA | **Estado:** ✅ **COMPLETADA**
 
 ### Tareas Principales
@@ -277,6 +296,7 @@
   - ✅ Responsive confirmado en diseño
 
 ### ✅ Criterios de Aceptación Fase 3
+
 - [x] Home page es 100% estática (SSG) ✅
 - [x] Build exitoso sin errores ✅
 - [x] Totalmente responsive ✅
@@ -286,6 +306,7 @@
 ### 📝 Notas Importantes de Fase 3
 
 **Archivos Creados/Modificados:**
+
 - `/src/lib/types/artwork.ts` - Interfaces TypeScript para obras
 - `/src/lib/data/artworks.json` - Mock data con 8 obras completas
 - `/src/components/gallery/ArtworkCard.tsx` - Componente de card de obra
@@ -295,6 +316,7 @@
 - `/src/app/globals.css` - Animaciones CSS agregadas
 
 **Features Implementadas:**
+
 1. Hero Section con animaciones CSS (fade-in, slide-up)
 2. Featured Works con grid responsive y ArtworkCard
 3. About Preview con layout 2 columnas
@@ -303,6 +325,7 @@
 6. Imágenes optimizadas con next/image
 
 **Decisiones Técnicas:**
+
 - Usamos CSS animations en lugar de react-magic-motion para mejor performance
 - Imágenes de Unsplash para mock (serán reemplazadas en producción)
 - ArtworkCard como Server Component para mejor SSG
@@ -311,6 +334,7 @@
 ---
 
 ## 🖼️ FASE 4: Galería - Página Principal (SSR)
+
 **Duración:** 4 días | **Prioridad:** ALTA | **Estado:** ✅ **COMPLETADA**
 
 ### Tareas Principales
@@ -379,7 +403,7 @@
 
 - [x] **4.10** Añadir animaciones de entrada
   - ✅ Stagger animation con CSS en ArtworkGrid
-  - ✅ Cada card tiene delay incremental (50ms * index)
+  - ✅ Cada card tiene delay incremental (50ms \* index)
   - ✅ Animación `animate-fade-in-up` aplicada
   - ✅ Transiciones suaves en hover effects
 
@@ -397,6 +421,7 @@
   - ✅ Performance con 35 obras: excelente
 
 ### ✅ Criterios de Aceptación Fase 4
+
 - [x] Galería usa SSR ✅ (verificado en build output como `ƒ (Dynamic)`)
 - [x] Filtros actualizan la galería dinámicamente ✅
 - [x] URL refleja estado de filtros ✅
@@ -407,6 +432,7 @@
 ### 📝 Notas Importantes de Fase 4
 
 **Archivos Creados:**
+
 - `/src/lib/utils/delay.ts` - Utility para simular latencia
 - `/src/lib/services/artworkService.ts` - Servicio completo con 7 funciones
 - `/src/app/[locale]/gallery/page.tsx` - Página con SSR (force-dynamic)
@@ -416,6 +442,7 @@
 - `/src/hooks/useFilters.ts` - Hook para gestión de filtros en URL
 
 **Archivos Actualizados:**
+
 - `/src/lib/data/artworks.json` - Expandido de 8 a 35 obras
 - `/src/lib/types/artwork.ts` - Agregado FilterOptions
 - `/src/components/gallery/ArtworkCard.tsx` - Mejorado con más info y badges
@@ -423,6 +450,7 @@
 - `/src/i18n/messages/en.json` - Traducciones de galería expandidas
 
 **Features Implementadas:**
+
 1. **SSR Completo:** Página renderizada en servidor en cada request
 2. **Filtros Dinámicos:** 5 tipos de filtros (categoría, técnica, ciudad, orientación, búsqueda)
 3. **URL State Management:** Filtros sincronizados con URL searchParams
@@ -434,6 +462,7 @@
 9. **Empty States:** Mensajes cuando no hay resultados
 
 **Decisiones Técnicas:**
+
 - SSR elegido sobre SSG para permitir filtros dinámicos
 - FilterOptions separado para type safety
 - simulateLatency(1500ms) para demostrar SSR y loading states
@@ -446,6 +475,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 ---
 
 ## 🎨 FASE 5: Galería - Detalle de Obra (ISR)
+
 **Duración:** 3 días | **Prioridad:** ALTA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
@@ -515,6 +545,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
   - Lazy load de related artworks
 
 ### ✅ Criterios de Aceptación Fase 5
+
 - [x] Página usa ISR correctamente
 - [x] Top 20 obras pre-rendered en build
 - [x] Metadata dinámica funciona
@@ -525,6 +556,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 ---
 
 ## 🛒 FASE 6: Tienda - Página Principal (SSR)
+
 **Duración:** 4 días | **Prioridad:** ALTA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
@@ -591,6 +623,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
   - Performance
 
 ### ✅ Criterios de Aceptación Fase 6
+
 - [x] Shop usa SSR
 - [x] Filtros y sorting operativos
 - [x] UI profesional de e-commerce
@@ -600,6 +633,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 ---
 
 ## 🛍️ FASE 7: Tienda - Detalle y Carrito
+
 **Duración:** 4 días | **Prioridad:** MEDIA-ALTA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
@@ -675,6 +709,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
   - Accessibility (keyboard navigation)
 
 ### ✅ Criterios de Aceptación Fase 7
+
 - [x] Detalle producto con ISR
 - [x] Carrito funcional con persistencia
 - [x] Animaciones fluidas
@@ -684,6 +719,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 ---
 
 ## 📄 FASE 8: Páginas Secundarias (SSG)
+
 **Duración:** 3 días | **Prioridad:** MEDIA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
@@ -722,6 +758,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
   - CTA para volver al home
 
 ### ✅ Criterios de Aceptación Fase 8
+
 - [x] About y Contact son SSG
 - [x] Formulario valida inputs
 - [x] Páginas de error personalizadas
@@ -730,6 +767,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 ---
 
 ## 🔌 FASE 9: API Routes
+
 **Duración:** 3 días | **Prioridad:** MEDIA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
@@ -782,6 +820,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
   - Documentar en README o docs/
 
 ### ✅ Criterios de Aceptación Fase 9
+
 - [x] Todas las API routes funcionando
 - [x] Validación implementada
 - [x] Error handling robusto
@@ -790,6 +829,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 ---
 
 ## 🖼️ FASE 10: Optimización de Imágenes
+
 **Duración:** 4 días | **Prioridad:** ALTA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
@@ -841,6 +881,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
   - FID/INP: <100ms ✅
 
 ### ✅ Criterios de Aceptación Fase 10
+
 - [x] Todas las imágenes con blur placeholder
 - [x] Formatos AVIF/WebP
 - [x] LCP mejorado significativamente
@@ -850,14 +891,17 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 ---
 
 ## ✨ FASE 11: Animaciones con react-magic-motion
+
 **Duración:** 3 días | **Prioridad:** MEDIA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
 
 - [ ] **11.1** Instalar react-magic-motion y plugins
+
   ```bash
   pnpm add react-magic-motion
   ```
+
   - Verificar compatibilidad con Next.js 15
   - Import en componentes Client
 
@@ -909,6 +953,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
   - Reducir motion para users con prefers-reduced-motion
 
 ### ✅ Criterios de Aceptación Fase 11
+
 - [x] Animaciones fluidas (60fps)
 - [x] No impact negativo en Lighthouse
 - [x] Accesibilidad: respeta prefers-reduced-motion
@@ -917,6 +962,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 ---
 
 ## 🔍 FASE 12: SEO y Metadata
+
 **Duración:** 4 días | **Prioridad:** ALTA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
@@ -978,6 +1024,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
   - Fix any issues encontrados
 
 ### ✅ Criterios de Aceptación Fase 12
+
 - [x] Lighthouse SEO: 100/100
 - [x] Todas las páginas con metadata completa
 - [x] Sitemap y robots.txt generados
@@ -987,6 +1034,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 ---
 
 ## 🧪 FASE 13: Testing y QA
+
 **Duración:** 4 días | **Prioridad:** ALTA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
@@ -1059,6 +1107,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
   - Resolver importantes si hay tiempo
 
 ### ✅ Criterios de Aceptación Fase 13
+
 - [x] 0 bugs críticos
 - [x] Lighthouse >95 en todas las categorías
 - [x] Responsive perfecto
@@ -1068,6 +1117,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 ---
 
 ## 📚 FASE 14: Documentación
+
 **Duración:** 3 días | **Prioridad:** ALTA | **Estado:** 🔴 No iniciado
 
 ### Tareas Principales
@@ -1113,6 +1163,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
   - Explicar partes no obvias
 
 ### ✅ Criterios de Aceptación Fase 14
+
 - [x] Documentación completa y clara
 - [x] README permite setup sin fricción
 - [x] Architecture y rendering strategies bien documentados
@@ -1160,6 +1211,7 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 **Progreso:** 29% (4/14 fases completadas)
 
 ### Log de Cambios
+
 - 2026-01-20 (inicio): TODO.md creado con todas las fases planificadas
 - 2026-01-20 (11:00): Inicialización del proyecto Next.js 16.1.4
 - 2026-01-20 (11:15): Instalación de dependencias principales (next-intl, GSAP, Tailwind)
@@ -1217,4 +1269,5 @@ Madrid, Barcelona, Valencia, Málaga, Sevilla, Bilbao, Zaragoza, Granada, Alican
 - 2026-01-21 (17:15): **✅ FASE 4 COMPLETADA** - Galería SSR con filtros dinámicos
 
 ### 🎯 Siguiente Paso
+
 **FASE 5: Galería - Detalle de Obra (ISR)** - Crear página detalle con ISR, generateStaticParams, metadata dinámica y obras relacionadas
