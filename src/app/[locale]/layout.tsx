@@ -6,6 +6,7 @@ import { Inter, Montserrat } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { Providers } from '@/components/providers'
 import '../globals.css'
 
 const inter = Inter({
@@ -94,9 +95,11 @@ export default async function LocaleLayout({
         className={`${inter.variable} ${montserrat.variable} antialiased flex min-h-screen flex-col`}
       >
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          <main className="flex-1 pt-16">{children}</main>
-          <Footer />
+          <Providers>
+            <Header />
+            <main className="flex-1 pt-16">{children}</main>
+            <Footer />
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>
