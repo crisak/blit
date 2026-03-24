@@ -27,7 +27,7 @@ export function AboutPreview() {
             <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">{t('about.title')}</h2>
             <p className="mb-8 text-lg leading-relaxed text-gray-300">{t('about.content')}</p>
             <Link href="/about">
-              <Button size="lg" variant="default">
+              <Button size="lg" variant="primary">
                 {t('about.cta')}
               </Button>
             </Link>
