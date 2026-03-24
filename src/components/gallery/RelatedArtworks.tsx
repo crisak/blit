@@ -21,7 +21,7 @@ export function RelatedArtworks({ artworks }: RelatedArtworksProps) {
           return (
             <Link
               key={artwork.id}
-              href={`/gallery/${artwork.slug}`}
+              href={`/projects/${artwork.slug}`}
               className="group block overflow-hidden rounded-lg bg-gray-900 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden">

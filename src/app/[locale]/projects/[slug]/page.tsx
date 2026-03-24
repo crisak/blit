@@ -41,16 +41,16 @@ export async function generateMetadata({ params }: ArtworkPageProps): Promise<Me
     title: artwork.title,
     description: artwork.description,
     alternates: {
-      canonical: `${siteUrl}/${locale}/gallery/${slug}`,
+      canonical: `${siteUrl}/${locale}/projects/${slug}`,
       languages: {
-        es: `${siteUrl}/es/gallery/${slug}`,
-        en: `${siteUrl}/en/gallery/${slug}`,
+        es: `${siteUrl}/es/projects/${slug}`,
+        en: `${siteUrl}/en/projects/${slug}`,
       },
     },
     openGraph: {
       title: artwork.title,
       description: artwork.description,
-      url: `${siteUrl}/${locale}/gallery/${slug}`,
+      url: `${siteUrl}/${locale}/projects/${slug}`,
       siteName: 'Blito - Street Art',
       locale: locale === 'es' ? 'es_ES' : 'en_US',
       type: 'article',
@@ -109,7 +109,7 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
       name: 'Blito',
       url: siteUrl,
     },
-    url: `${siteUrl}/${locale}/gallery/${slug}`,
+    url: `${siteUrl}/${locale}/projects/${slug}`,
     inLanguage: locale,
     locationCreated: {
       '@type': 'Place',

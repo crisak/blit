@@ -22,7 +22,7 @@ export default function NotFound() {
             {t('backHome')}
           </Link>
           <Link
-            href="/gallery"
+            href="/projects"
             className="rounded-lg border border-gray-700 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
           >
             {t('backGallery')}

@@ -25,7 +25,7 @@ export default function ArtworkGrid({ artworks }: ArtworkGridProps) {
       {artworks.map((artwork, index) => (
         <Link
           key={artwork.id}
-          href={`/gallery/${artwork.slug}`}
+          href={`/projects/${artwork.slug}`}
           className="group block animate-fade-in-up"
           prefetch={false}
           style={{

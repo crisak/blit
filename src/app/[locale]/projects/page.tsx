@@ -39,16 +39,16 @@ export async function generateMetadata({
     title: t('title'),
     description: t('subtitle'),
     alternates: {
-      canonical: `${siteUrl}/${locale}/gallery`,
+      canonical: `${siteUrl}/${locale}/projects`,
       languages: {
-        es: `${siteUrl}/es/gallery`,
-        en: `${siteUrl}/en/gallery`,
+        es: `${siteUrl}/es/projects`,
+        en: `${siteUrl}/en/projects`,
       },
     },
     openGraph: {
       title: `${t('title')} | ${tMeta('title')}`,
       description: t('subtitle'),
-      url: `${siteUrl}/${locale}/gallery`,
+      url: `${siteUrl}/${locale}/projects`,
       siteName: 'Blito - Street Art',
       locale: locale === 'es' ? 'es_ES' : 'en_US',
       type: 'website',
