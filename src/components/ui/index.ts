@@ -1,6 +1,6 @@
-export { Button } from './button'
-export { Card, CardHeader, CardContent, CardFooter } from './card'
-export { Input } from './input'
+export { Button } from './Button'
+export { Card, CardHeader, CardContent, CardFooter } from './Card'
+export { Input } from './Input'
 export { Label } from './label'
 export {
   Dialog,
