@@ -38,6 +38,7 @@ export function Header() {
   const menuLinksRef = useRef<HTMLDivElement>(null)
   const menuTlRef = useRef<gsap.core.Timeline | null>(null)
   const leftPanelRef = useRef<HTMLDivElement>(null)
+  const imagesRef = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -139,43 +140,45 @@ export function Header() {
 
   return (
     <>
+      {/* Minimal Header - Only Logo and Hamburger */}
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-40 transition-all duration-300',
-          isScrolled
-            ? 'bg-gray-950/90 backdrop-blur-md border-b border-gray-800/50'
-            : 'bg-transparent'
+          'fixed top-0 left-0 right-0 z-[201] transition-all duration-300',
+          isMenuOpen ? 'pointer-events-none' : ''
         )}
+        style={{
+          background: isMenuOpen ? 'transparent' : 'transparent',
+        }}
       >
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 group transition-all duration-300">
-              <span
-                className={cn(
-                  'text-2xl font-extrabold font-heading tracking-tight',
-                  'text-white transition-all duration-300',
-                  'group-hover:text-gray-300 group-hover:tracking-wide'
-                )}
-              >
-                BLITO
-              </span>
-            </Link>
+            {/* Logo - Only visible when menu is closed */}
+            {!isMenuOpen && (
+              <Link href="/" className="flex items-center gap-2 group transition-all duration-300">
+                <span
+                  className={cn(
+                    'text-2xl font-extrabold font-heading tracking-tight',
+                    'text-white transition-all duration-300',
+                    'group-hover:text-gray-300 group-hover:tracking-wide'
+                  )}
+                >
+                  BLITO
+                </span>
+              </Link>
+            )}
 
-            {/* Desktop Navigation - Hidden, only hamburger */}
-            <div className="hidden md:flex md:items-center md:gap-8">
-              {/* Empty - only hamburger on desktop */}
-            </div>
+            {/* Spacer when logo is hidden */}
+            {isMenuOpen && <div />}
 
-            {/* Right side - Language + Hamburger */}
+            {/* Right side - Language (hidden when menu closed) + Hamburger */}
             <div className="flex items-center gap-4">
-              <LanguageSwitcher />
+              {/* Hamburger Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className={cn(
                   'relative w-12 h-12 flex items-center justify-center',
                   'rounded-lg transition-all duration-200',
-                  'text-white hover:bg-gray-800/50',
+                  'text-white hover:bg-white/10',
                   'z-[201]'
                 )}
                 aria-expanded={isMenuOpen}
@@ -223,94 +226,57 @@ export function Header() {
           clipPath: 'circle(0% at calc(100% - 48px) 32px)',
         }}
       >
-        {/* Left Panel - Logo and Images */}
-        <div
-          ref={leftPanelRef}
-          className="hidden lg:flex lg:w-1/2 xl:w-[55%] flex-col justify-between p-8 xl:p-12"
-        >
-          {/* Logo at top */}
-          <Link href="/" onClick={() => setIsMenuOpen(false)} className="block">
+        {/* Left Panel - Full Height Image (50% width) */}
+        <div ref={leftPanelRef} className="hidden lg:block w-1/2 h-full relative overflow-hidden">
+          {/* Images with cinematic transition */}
+          {navLinks.map((link, index) => (
+            <div
+              key={link.href}
+              ref={(el) => {
+                imagesRef.current[index] = el
+              }}
+              className="absolute inset-0"
+              style={{
+                opacity: hoveredIndex === index ? 1 : 0,
+                transition: 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                transform:
+                  hoveredIndex === index
+                    ? 'translateX(0)'
+                    : hoveredIndex !== null
+                      ? 'translateX(-5%)'
+                      : 'translateX(0)',
+                transitionProperty: 'opacity, transform',
+                transitionDuration: hoveredIndex !== null ? '0.8s, 1.2s' : '0.3s, 0.3s',
+              }}
+            >
+              <Image
+                src={link.image}
+                alt={t(link.labelKey)}
+                fill
+                className="object-cover"
+                sizes="50vw"
+                quality={90}
+                priority={index === 0}
+              />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
+            </div>
+          ))}
+
+          {/* Logo at top left of overlay */}
+          <div className="absolute top-8 left-8 z-10">
             <span className="text-3xl font-extrabold font-heading tracking-tight text-white">
               BLITO
             </span>
-          </Link>
-
-          {/* Main Image Panel */}
-          <div className="relative flex-1 flex items-center justify-center my-8 mx-4">
-            <div className="relative w-full max-w-lg aspect-[4/5] overflow-hidden">
-              {/* Base image */}
-              {navLinks.map((link, index) => (
-                <div
-                  key={link.href}
-                  className="absolute inset-0 transition-opacity duration-500"
-                  style={{
-                    opacity:
-                      hoveredIndex === index
-                        ? 1
-                        : hoveredIndex === null
-                          ? index === 0
-                            ? 1
-                            : 0
-                          : 0,
-                  }}
-                >
-                  <Image
-                    src={link.image}
-                    alt={t(link.labelKey)}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 0px, 50vw"
-                    quality={85}
-                    priority={index === 0}
-                  />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                </div>
-              ))}
-
-              {/* Default state when no hover */}
-              {hoveredIndex === null && (
-                <div className="absolute inset-0 flex items-end p-6">
-                  <div>
-                    <p className="text-gray-400 text-sm uppercase tracking-widest mb-2">
-                      Bienvenido
-                    </p>
-                    <h2 className="text-white text-3xl font-bold">Explora mi trabajo</h2>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Subtle movement indicator */}
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-              {navLinks.map((_, index) => (
-                <div
-                  key={index}
-                  className={cn(
-                    'w-8 h-1 rounded-full transition-all duration-300',
-                    hoveredIndex === index
-                      ? 'bg-white w-12'
-                      : hoveredIndex === null
-                        ? index === 0
-                          ? 'bg-white w-12'
-                          : 'bg-gray-600'
-                        : 'bg-gray-600'
-                  )}
-                />
-              ))}
-            </div>
           </div>
-
-          {/* Footer text */}
-          <div className="text-gray-500 text-sm">Arte callejero · Colombia</div>
         </div>
 
         {/* Right Panel - Menu Links */}
-        <div className="w-full lg:w-1/2 xl:w-[45%] flex flex-col justify-center px-8 md:px-16 lg:px-20">
-          {/* Close button for desktop */}
+        <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-20 relative">
+          {/* Close button */}
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="absolute top-6 right-6 md:top-8 md:right-8 w-12 h-12 flex items-center justify-center rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
             aria-label="Close menu"
           >
             <svg
@@ -326,7 +292,7 @@ export function Header() {
 
           {/* Menu Links Container */}
           <div ref={menuLinksRef} className="relative z-10">
-            <ul className="flex flex-col gap-2 md:gap-4">
+            <ul className="flex flex-col gap-3 md:gap-5">
               {navLinks.map((link, index) => (
                 <li key={link.href} className="overflow-hidden">
                   <Link
@@ -354,9 +320,7 @@ export function Header() {
                       <span
                         className={cn(
                           'ml-4 text-lg md:text-xl xl:text-2xl transition-all duration-300',
-                          hoveredIndex === index
-                            ? 'text-gray-400 translate-x-0'
-                            : 'text-gray-600 -translate-x-2'
+                          hoveredIndex === index ? 'text-gray-400' : 'text-gray-600'
                         )}
                       >
                         0{index + 1}
@@ -367,33 +331,39 @@ export function Header() {
               ))}
             </ul>
 
-            {/* Social Links */}
+            {/* Language Switcher + Social Links inside menu */}
             <div className="mt-12 md:mt-16 pt-8 border-t border-gray-800/50">
-              <div className="flex gap-6 md:gap-8">
-                <a
-                  href="https://www.instagram.com/blito.col/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-500 hover:text-white transition-colors duration-200"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="https://www.threads.net/@blito.col"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-500 hover:text-white transition-colors duration-200"
-                >
-                  Threads
-                </a>
-                <a
-                  href="https://www.facebook.com/libreton94"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-500 hover:text-white transition-colors duration-200"
-                >
-                  Facebook
-                </a>
+              <div className="flex items-center justify-between">
+                {/* Language Switcher */}
+                <LanguageSwitcher />
+
+                {/* Social Links */}
+                <div className="flex gap-6 md:gap-8">
+                  <a
+                    href="https://www.instagram.com/blito.col/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-gray-500 hover:text-white transition-colors duration-200"
+                  >
+                    Instagram
+                  </a>
+                  <a
+                    href="https://www.threads.net/@blito.col"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-gray-500 hover:text-white transition-colors duration-200"
+                  >
+                    Threads
+                  </a>
+                  <a
+                    href="https://www.facebook.com/libreton94"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-gray-500 hover:text-white transition-colors duration-200"
+                  >
+                    Facebook
+                  </a>
+                </div>
               </div>
             </div>
           </div>
