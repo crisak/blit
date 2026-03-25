@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
 
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: -100, y: -100 })
@@ -90,7 +89,7 @@ export function CustomCursor() {
           transform: `translate(-20%, -20%) translate(${position.x}px, ${position.y}px)`,
         }}
       >
-        <Image
+        <img
           src="/images/gallery/utils/spray.png"
           alt="Custom cursor"
           width={getCursorSize()}
@@ -99,8 +98,8 @@ export function CustomCursor() {
           style={{
             transform: `rotate(${getRotation()}deg)`,
             transition: 'transform 0.15s ease-out',
+            borderRadius: '50%',
           }}
-          priority
         />
       </div>
 
