@@ -34,10 +34,10 @@ export function HeroSection() {
           end: 'bottom top',
           scrub: 1,
           onLeave: () => {
-            gsap.set([maskRef.current, contentRef.current], { autoAlpha: 0 })
+            gsap.set([maskRef.current, contentRef.current], { visibility: 'hidden' })
           },
           onEnterBack: () => {
-            gsap.set([maskRef.current, contentRef.current], { autoAlpha: 1 })
+            gsap.set([maskRef.current, contentRef.current], { visibility: 'visible' })
           },
         },
       })
