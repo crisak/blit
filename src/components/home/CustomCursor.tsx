@@ -1,12 +1,15 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: -100, y: -100 })
   const [isHovering, setIsHovering] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
-  const [hoverType, setHoverType] = useState<'link' | 'image' | 'button' | 'default'>('default')
+  const [hoverType, setHoverType] = useState<'link' | 'image' | 'button' | 'expand' | 'default'>(
+    'default'
+  )
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -20,12 +23,15 @@ export function CustomCursor() {
     const handleElementHover = (e: MouseEvent) => {
       const target = e.target as HTMLElement
 
-      if (target.closest("a, button, [role='button']")) {
+      if (target.closest("[data-cursor='expand']")) {
         setIsHovering(true)
-        setHoverType('link')
-      } else if (target.closest("img, [data-cursor='image']")) {
+        setHoverType('expand')
+      } else if (target.closest("[data-cursor='image']")) {
         setIsHovering(true)
         setHoverType('image')
+      } else if (target.closest("a, button, [role='button']")) {
+        setIsHovering(true)
+        setHoverType('link')
       } else if (target.closest("[data-cursor='button']")) {
         setIsHovering(true)
         setHoverType('button')
@@ -49,30 +55,23 @@ export function CustomCursor() {
   }, [isVisible])
 
   const getCursorSize = () => {
-    if (!isHovering) return 12
     switch (hoverType) {
+      case 'expand':
+        return 48
       case 'image':
-        return 80
+        return 64
       case 'button':
-        return 50
+        return 40
       case 'link':
-        return 24
+        return 36
       default:
-        return 12
+        return 36
     }
   }
 
-  const getBorderColor = () => {
-    switch (hoverType) {
-      case 'image':
-        return 'rgba(255, 255, 255, 0.8)'
-      case 'button':
-        return 'rgba(255, 255, 255, 0.9)'
-      case 'link':
-        return 'rgba(255, 255, 255, 0.9)'
-      default:
-        return 'rgba(255, 255, 255, 0.8)'
-    }
+  const getRotation = () => {
+    if (hoverType === 'expand') return -45
+    return 0
   }
 
   return (
@@ -80,34 +79,55 @@ export function CustomCursor() {
       className="pointer-events-none fixed inset-0 z-[9999] hidden md:block"
       style={{
         opacity: isVisible ? 1 : 0,
-        transition: 'opacity 0.15s ease-out',
+        transition: 'opacity 0.2s ease-out',
       }}
     >
       <div
-        className="absolute rounded-full border-2 transition-all duration-150"
+        className="relative transition-all duration-100"
         style={{
           width: getCursorSize(),
           height: getCursorSize(),
-          borderColor: getBorderColor(),
-          backgroundColor:
-            hoverType === 'image'
-              ? 'rgba(255, 255, 255, 0.3)'
-              : hoverType === 'button'
-                ? 'rgba(255, 255, 255, 0.5)'
-                : hoverType === 'link'
-                  ? 'rgba(255, 255, 255, 0.7)'
-                  : 'rgba(255, 255, 255, 0.8)',
-          transform: `translate(-50%, -50%) translate(${position.x}px, ${position.y}px) scale(${isHovering ? 1 : 0.5})`,
+          transform: `translate(-20%, -20%) translate(${position.x}px, ${position.y}px)`,
         }}
-      />
+      >
+        <Image
+          src="/images/gallery/utils/spray.png"
+          alt="Custom cursor"
+          width={getCursorSize()}
+          height={getCursorSize()}
+          className="pointer-events-none"
+          style={{
+            transform: `rotate(${getRotation()}deg)`,
+            transition: 'transform 0.15s ease-out',
+          }}
+          priority
+        />
+      </div>
+
+      {isHovering && hoverType === 'expand' && (
+        <div
+          className="absolute flex items-center justify-center rounded-full border-2 border-white/50 bg-black/50 backdrop-blur-sm"
+          style={{
+            width: 56,
+            height: 56,
+            left: position.x - 28,
+            top: position.y - 28,
+            opacity: 1,
+            transition: 'opacity 0.15s ease-out',
+          }}
+        >
+          <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v12m6-6H6" />
+          </svg>
+        </div>
+      )}
 
       {isHovering && hoverType === 'image' && (
         <div
-          className="absolute whitespace-nowrap rounded-full bg-white/90 px-3 py-1.5"
+          className="absolute rounded-full bg-white/90 px-3 py-1.5"
           style={{
-            left: position.x + getCursorSize() / 2 + 10,
-            top: position.y - 20,
-            transform: 'translateY(0)',
+            left: position.x + getCursorSize() / 2 + 8,
+            top: position.y - 24,
             opacity: 1,
             transition: 'opacity 0.15s ease-out',
           }}
@@ -118,12 +138,12 @@ export function CustomCursor() {
 
       {isHovering && hoverType === 'link' && (
         <div
-          className="absolute h-0.5 bg-white"
+          className="absolute h-0.5 bg-accent-pink"
           style={{
-            width: getCursorSize() * 1.5,
-            left: position.x - getCursorSize() * 0.25,
-            top: position.y + getCursorSize() / 2 + 6,
-            transform: `scaleX(${isHovering && hoverType === 'link' ? 1 : 0})`,
+            width: 32,
+            left: position.x - 16,
+            top: position.y + 20,
+            transform: 'scaleX(1)',
             opacity: 1,
             transition: 'opacity 0.15s ease-out',
           }}

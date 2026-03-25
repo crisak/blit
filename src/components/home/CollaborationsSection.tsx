@@ -37,7 +37,7 @@ export function CollaborationsSection() {
   ]
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-gray-950 py-16">
+    <section ref={sectionRef} className="relative overflow-hidden bg-gray-950 py-20 md:py-24">
       <div className="absolute inset-0 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4">

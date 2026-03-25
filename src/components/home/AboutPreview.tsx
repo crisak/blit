@@ -5,10 +5,17 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
 import { Button } from '@/components/ui'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function AboutPreview() {
   const t = useTranslations('home')
   const sectionRef = useRef<HTMLElement>(null)
+  const backgroundRef = useRef<HTMLDivElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -30,13 +37,58 @@ export function AboutPreview() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || !sectionRef.current) return
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      })
+
+      if (backgroundRef.current) {
+        tl.to(backgroundRef.current, {
+          yPercent: -15,
+          ease: 'none',
+        })
+      }
+
+      if (imageRef.current) {
+        tl.to(
+          imageRef.current,
+          {
+            yPercent: -8,
+            ease: 'none',
+          },
+          '<'
+        )
+      }
+
+      if (contentRef.current) {
+        tl.to(
+          contentRef.current,
+          {
+            yPercent: -5,
+            ease: 'none',
+          },
+          '<'
+        )
+      }
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [isVisible])
+
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-b from-gray-950 to-gray-900 py-24"
+      className="relative min-h-[100vh] overflow-hidden bg-gradient-to-b from-gray-950 to-gray-900 py-24 md:py-32"
     >
-      {/* Artistic Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div ref={backgroundRef} className="absolute inset-0 opacity-10">
         <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -53,17 +105,15 @@ export function AboutPreview() {
         </svg>
       </div>
 
-      {/* Decorative Blobs */}
       <div className="absolute -left-20 top-20 h-64 w-64 rounded-full bg-accent-pink/20 blur-3xl" />
       <div className="absolute -bottom-20 -right-20 h-80 w-80 rounded-full bg-accent-cyan/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4">
-        <div className="grid gap-12 md:grid-cols-2 md:items-center">
-          {/* Image Section */}
+        <div ref={contentRef} className="grid gap-16 md:grid-cols-2 md:items-center lg:gap-24">
           <div
+            ref={imageRef}
             className={`relative transition-all duration-700 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'}`}
           >
-            {/* Main Image */}
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&h=1000&fit=crop"
@@ -76,7 +126,6 @@ export function AboutPreview() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             </div>
 
-            {/* Floating Mini Gallery */}
             <div className="absolute -bottom-6 -right-6 flex gap-3">
               <div className="h-24 w-20 overflow-hidden rounded-lg border-2 border-gray-800 shadow-xl">
                 <Image
@@ -107,24 +156,22 @@ export function AboutPreview() {
               </div>
             </div>
 
-            {/* Decorative Frame */}
             <div className="absolute -left-4 -top-4 h-24 w-24 border-l-2 border-t-2 border-accent-pink" />
             <div className="absolute -bottom-4 -right-4 h-24 w-24 border-b-2 border-r-2 border-accent-cyan" />
           </div>
 
-          {/* Content Section */}
           <div
             className={`transition-all duration-700 delay-200 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'}`}
           >
-            <h2 className="mb-6 font-heading text-4xl font-bold text-white md:text-5xl">
+            <h2 className="mb-8 font-heading text-4xl font-bold text-white md:text-5xl">
               {t('about.title')}
             </h2>
 
             <div className="mb-8 h-1 w-20 bg-gradient-to-r from-accent-pink to-accent-cyan" />
 
-            <p className="mb-6 text-lg leading-relaxed text-gray-300">{t('about.bio')}</p>
+            <p className="mb-10 text-lg leading-relaxed text-gray-300">{t('about.bio')}</p>
 
-            <div className="mb-8 flex flex-wrap gap-3">
+            <div className="mb-10 flex flex-wrap gap-4">
               <span className="rounded-full bg-accent-pink/20 px-4 py-2 text-sm font-medium text-accent-pink">
                 +10 años experiencia
               </span>

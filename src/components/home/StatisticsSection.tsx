@@ -2,6 +2,10 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface StatItem {
   value: number
@@ -69,9 +73,33 @@ export function StatisticsSection() {
     return () => clearInterval(interval)
   }, [isVisible])
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || !sectionRef.current) return
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 0.3 },
+        {
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            end: 'top 30%',
+            scrub: false,
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-gray-950 py-24">
-      {/* Background Pattern */}
+    <section ref={sectionRef} className="relative overflow-hidden bg-gray-950 py-32 md:py-40">
       <div className="absolute inset-0 opacity-5">
         <div
           className="absolute inset-0"
@@ -81,22 +109,18 @@ export function StatisticsSection() {
         />
       </div>
 
-      {/* Decorative Elements */}
       <div className="absolute left-0 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-accent-pink/10 blur-3xl" />
       <div className="absolute right-0 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-accent-cyan/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4">
-        {/* Section Title */}
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
+        <div className="mb-20 text-center">
+          <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
             {t('statistics.title')}
           </h2>
           <div className="mx-auto h-1 w-20 bg-gradient-to-r from-accent-pink to-accent-cyan" />
         </div>
 
-        {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
-          {/* Years */}
           <div
             className={`text-center transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
             style={{ transitionDelay: '0ms' }}
@@ -110,7 +134,6 @@ export function StatisticsSection() {
             </div>
           </div>
 
-          {/* Murals */}
           <div
             className={`text-center transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
             style={{ transitionDelay: '150ms' }}
@@ -124,7 +147,6 @@ export function StatisticsSection() {
             </div>
           </div>
 
-          {/* Cities */}
           <div
             className={`text-center transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
             style={{ transitionDelay: '300ms' }}
@@ -137,7 +159,6 @@ export function StatisticsSection() {
             </div>
           </div>
 
-          {/* Square Meters */}
           <div
             className={`text-center transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
             style={{ transitionDelay: '450ms' }}
@@ -153,7 +174,6 @@ export function StatisticsSection() {
         </div>
       </div>
 
-      {/* Bottom Border Gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-pink/50 to-transparent" />
     </section>
   )

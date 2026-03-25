@@ -4,6 +4,10 @@ import { useRef, useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
 import { Button } from '@/components/ui'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function MapPreview() {
   const t = useTranslations('home')
@@ -29,6 +33,31 @@ export function MapPreview() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || !sectionRef.current) return
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 0.4 },
+        {
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+            end: 'top 25%',
+            scrub: false,
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   const mapPins = [
     { id: 1, city: 'Bogotá', department: 'Cundinamarca', x: 35, y: 30 },
     { id: 2, city: 'Soacha', department: 'Cundinamarca', x: 32, y: 32 },
@@ -39,9 +68,8 @@ export function MapPreview() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-950 py-24"
+      className="relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-950 py-24 md:py-32"
     >
-      {/* Background Map SVG */}
       <div className="absolute inset-0 opacity-5">
         <svg viewBox="0 0 100 100" className="h-full w-full" preserveAspectRatio="none">
           <path
@@ -61,26 +89,23 @@ export function MapPreview() {
         </svg>
       </div>
 
-      {/* Decorative Glow */}
       <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-cyan/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4">
-        {/* Section Header */}
-        <div className="mb-12 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
+        <div className="mb-16 text-center">
+          <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
             {t('mapPreview.title')}
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-gray-400">{t('mapPreview.subtitle')}</p>
-          <div className="mx-auto mt-6 h-1 w-20 bg-gradient-to-r from-accent-cyan to-accent-pink" />
+          <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-gray-400">
+            {t('mapPreview.subtitle')}
+          </p>
+          <div className="mx-auto h-1 w-20 bg-gradient-to-r from-accent-cyan to-accent-pink" />
         </div>
 
-        {/* Map Preview */}
         <div
-          className={`relative mx-auto mb-12 max-w-4xl transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+          className={`relative mx-auto mb-16 max-w-4xl transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
         >
-          {/* Map Container */}
           <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-gray-800 bg-gray-900/50 shadow-2xl">
-            {/* Simplified Colombia Map Background */}
             <div className="absolute inset-0 flex items-center justify-center">
               <svg viewBox="0 0 100 100" className="h-full w-full" preserveAspectRatio="none">
                 <defs>
@@ -90,7 +115,6 @@ export function MapPreview() {
                   </linearGradient>
                 </defs>
                 <rect fill="url(#mapGradient)" width="100" height="100" />
-                {/* Simplified Colombia outline */}
                 <path
                   d="M30,15 Q50,10 70,20 L85,35 Q80,50 70,55 L55,65 Q40,70 30,60 L20,45 Q25,25 30,15"
                   fill="none"
@@ -100,7 +124,6 @@ export function MapPreview() {
               </svg>
             </div>
 
-            {/* Map Pins */}
             {mapPins.map((pin, index) => (
               <div
                 key={pin.id}
@@ -112,11 +135,9 @@ export function MapPreview() {
                 }}
               >
                 <div className="relative -translate-x-1/2 -translate-y-1/2">
-                  {/* Pin Dot */}
                   <div className="h-4 w-4 animate-pulse rounded-full bg-accent-pink shadow-lg shadow-accent-pink/50">
                     <div className="absolute inset-0 animate-ping rounded-full bg-accent-pink/50" />
                   </div>
-                  {/* Pin Label */}
                   <div className="absolute left-1/2 top-8 -translate-x-1/2 whitespace-nowrap rounded-full bg-gray-900/90 px-2 py-1 text-xs font-medium text-white backdrop-blur-sm">
                     {pin.city}
                   </div>
@@ -124,11 +145,9 @@ export function MapPreview() {
               </div>
             ))}
 
-            {/* Overlay Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent" />
           </div>
 
-          {/* Stats Overlay */}
           <div className="absolute -bottom-4 left-1/2 flex -translate-x-1/2 gap-4 rounded-full bg-gray-900/90 px-6 py-3 backdrop-blur-sm">
             <div className="text-center">
               <div className="text-xl font-bold text-white">4</div>
@@ -142,7 +161,6 @@ export function MapPreview() {
           </div>
         </div>
 
-        {/* CTA */}
         <div className="text-center">
           <Link href="/map">
             <Button
