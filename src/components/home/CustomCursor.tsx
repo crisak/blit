@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import sprayCursor from '@/public/images/gallery/utils/spray.png'
+
+const SPRAY_CURSOR_URL = '/images/gallery/utils/spray.png'
 
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: -100, y: -100 })
@@ -91,7 +92,7 @@ export function CustomCursor() {
         }}
       >
         <img
-          src={sprayCursor.src}
+          src={SPRAY_CURSOR_URL}
           alt="Custom cursor"
           width={getCursorSize()}
           height={getCursorSize()}
