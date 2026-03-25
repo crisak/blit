@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
 import { Button } from '@/components/ui'
+import { cn } from '@/lib/utils/cn'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -12,111 +13,155 @@ gsap.registerPlugin(ScrollTrigger)
 
 export function HeroSection() {
   const t = useTranslations('home')
-  const heroRef = useRef<HTMLElement>(null)
-  const backgroundRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+  const maskRef = useRef<HTMLDivElement>(null)
+  const heroKeyRef = useRef<HTMLDivElement>(null)
+  const heroKeyLogoRef = useRef<HTMLImageElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
-  const [videoError, setVideoError] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     setIsLoaded(true)
 
-    if (typeof window === 'undefined' || !heroRef.current) return
+    if (typeof window === 'undefined' || !sectionRef.current) return
 
     const ctx = gsap.context(() => {
-      if (backgroundRef.current) {
-        gsap.to(backgroundRef.current, {
-          yPercent: 30,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        })
+      const tl = gsap.timeline({
+        ease: 'power2.out',
+        scrollTrigger: {
+          scrub: 1,
+        },
+      })
+
+      if (heroKeyRef.current) {
+        tl.to(heroKeyRef.current, { duration: 1, scale: 1 })
+      }
+
+      if (heroKeyLogoRef.current) {
+        tl.to(heroKeyLogoRef.current, { opacity: 0 }, '<')
       }
 
       if (contentRef.current) {
-        gsap.to(contentRef.current, {
-          yPercent: 50,
-          opacity: 0,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: 'top top',
-            end: 'center top',
-            scrub: true,
-          },
-        })
+        tl.to(contentRef.current, { opacity: 0 }, '<')
       }
-    }, heroRef)
+
+      if (maskRef.current) {
+        tl.to(
+          maskRef.current,
+          {
+            maskSize: 'clamp(20vh, 25%, 30vh)',
+          },
+          0.15
+        )
+      }
+
+      if (heroKeyRef.current) {
+        tl.to(
+          heroKeyRef.current,
+          {
+            opacity: 0,
+            duration: 0.2,
+          },
+          0.4
+        )
+      }
+    }, sectionRef)
 
     return () => ctx.revert()
   }, [])
 
-  const handleVideoError = () => {
-    setVideoError(true)
-  }
-
   return (
-    <section
-      ref={heroRef}
-      className="relative flex min-h-[100vh] items-center justify-center overflow-hidden"
-    >
-      <div ref={backgroundRef} className="absolute inset-0 scale-110">
-        {!videoError ? (
-          <video
-            className="h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            onError={handleVideoError}
-            poster="/images/gallery/banner/bg-form-contact.webp"
-          >
-            <source src="/videos/hero-mural.mp4" type="video/mp4" />
-          </video>
-        ) : (
+    <section ref={sectionRef} className="relative h-[300vh]">
+      {/* Masked layer — SVG logo mask that shrinks on scroll */}
+      <div ref={maskRef} className="hero-logo-mask fixed top-0 h-screen w-full">
+        <div ref={heroKeyRef} className="fixed block h-screen w-full scale-125 overflow-hidden">
+          {/* Foreground — transparent subject, fades on scroll */}
           <Image
-            src="/images/gallery/banner/bg-form-contact.webp"
-            alt="Fondo de mural de arte callejero"
+            ref={heroKeyLogoRef}
+            src="/images/hero/hero-fg.png"
+            alt=""
             fill
             priority
-            quality={90}
-            className="object-cover"
             sizes="100vw"
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
+            className="absolute h-full w-full object-cover"
           />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-950/80 via-gray-950/60 to-gray-950/90" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E')] opacity-[0.03] mix-blend-overlay" />
+          {/* Background — base scene */}
+          <Image
+            src="/images/hero/hero-bg.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="h-full w-full object-cover"
+            quality={90}
+            fetchPriority="high"
+          />
+        </div>
       </div>
 
-      <div ref={contentRef} className="relative z-10 mx-auto max-w-5xl px-4 py-20 text-center">
+      {/* Content overlay — fixed, centered */}
+      <div
+        ref={contentRef}
+        className="fixed inset-0 flex h-screen w-full flex-col items-center justify-center px-4 text-center"
+      >
+        {/* Logo stack */}
+        <div className="relative mb-8">
+          <Image
+            src="/images/hero/logo-glow.png"
+            alt=""
+            width={600}
+            height={471}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-110 opacity-60 blur-sm"
+            priority
+          />
+          <Image
+            src="/images/hero/logo.png"
+            alt="Blito"
+            width={500}
+            height={335}
+            className="relative"
+            priority
+          />
+        </div>
+
         <p
-          className={`hero-tagline mb-6 text-xs uppercase tracking-[0.4em] text-gray-400 md:text-sm transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={cn(
+            'mb-6 text-xs uppercase tracking-[0.4em] text-gray-400 md:text-sm',
+            'transition-all duration-700',
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          )}
         >
           {t('tagline')}
         </p>
 
         <h1
-          className={`hero-title mb-10 font-heading text-6xl font-black tracking-tight text-white transition-all duration-700 delay-150 sm:text-7xl md:text-8xl lg:text-9xl ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={cn(
+            'mb-10 font-heading text-6xl font-black tracking-tight text-white',
+            'sm:text-7xl md:text-8xl lg:text-9xl',
+            'transition-all duration-700 delay-150',
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          )}
           style={{ textShadow: '0 0 80px rgba(255,255,255,0.1)' }}
         >
           {t('title')}
         </h1>
 
         <p
-          className={`hero-subtitle mx-auto mb-16 max-w-2xl text-lg leading-relaxed text-gray-300 transition-all duration-700 delay-300 md:text-xl ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={cn(
+            'mx-auto mb-16 max-w-2xl text-lg leading-relaxed text-gray-300 md:text-xl',
+            'transition-all duration-700 delay-300',
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          )}
         >
           {t('subtitle')}
         </p>
 
         <div
-          className={`hero-cta flex flex-col justify-center gap-6 transition-all duration-700 delay-500 opacity-0 sm:flex-row ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={cn(
+            'flex flex-col justify-center gap-6 sm:flex-row',
+            'transition-all duration-700 delay-500',
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          )}
         >
           <Link href="/projects">
             <Button
@@ -138,11 +183,12 @@ export function HeroSection() {
             </Button>
           </Link>
         </div>
-      </div>
 
-      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-gray-500">
-        <span className="text-xs uppercase tracking-widest">Scroll</span>
-        <div className="h-12 w-px animate-pulse bg-gradient-to-b from-gray-500 to-transparent" />
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-gray-500">
+          <span className="text-xs uppercase tracking-widest">Scroll</span>
+          <div className="h-12 w-px animate-pulse bg-gradient-to-b from-gray-500 to-transparent" />
+        </div>
       </div>
     </section>
   )
