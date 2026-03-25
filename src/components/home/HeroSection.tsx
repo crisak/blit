@@ -62,7 +62,7 @@ export function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden"
+      className="relative flex min-h-[100vh] items-center justify-center overflow-hidden"
     >
       <div ref={backgroundRef} className="absolute inset-0 scale-110">
         {!videoError ? (

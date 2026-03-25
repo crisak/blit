@@ -223,10 +223,15 @@ export function Header() {
           background: 'rgba(5, 5, 8, 0.97)',
           backdropFilter: 'blur(20px)',
           clipPath: 'circle(0% at calc(100% - 48px) 32px)',
+          zIndex: 300,
         }}
       >
         {/* Left Panel - Full Height Image (50% width) */}
-        <div ref={leftPanelRef} className="hidden lg:block w-1/2 h-full relative overflow-hidden">
+        <div
+          ref={leftPanelRef}
+          className="hidden lg:block w-1/2 h-full relative overflow-hidden"
+          style={{ zIndex: 1 }}
+        >
           {/* Images with cinematic transition */}
           {navLinks.map((link, index) => (
             <div
