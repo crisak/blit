@@ -140,20 +140,12 @@ export function Header() {
 
   return (
     <>
-      {/* Minimal Header - Only Logo and Hamburger */}
-      <header
-        className={cn(
-          'fixed top-0 left-0 right-0 z-[201] transition-all duration-300',
-          isMenuOpen ? 'pointer-events-none' : ''
-        )}
-        style={{
-          background: isMenuOpen ? 'transparent' : 'transparent',
-        }}
-      >
-        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            {/* Logo - Only visible when menu is closed */}
-            {!isMenuOpen && (
+      {/* Minimal Header - Only Logo and Hamburger - Hidden when menu open */}
+      {!isMenuOpen && (
+        <header className={cn('fixed top-0 left-0 right-0 z-[201] transition-all duration-300')}>
+          <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 items-center justify-between">
+              {/* Logo */}
               <Link href="/" className="flex items-center gap-2 group transition-all duration-300">
                 <Image
                   src="/images/logo/logo-white.svg"
@@ -164,66 +156,50 @@ export function Header() {
                   priority
                 />
               </Link>
-            )}
 
-            {/* Spacer when logo is hidden */}
-            {isMenuOpen && <div />}
-
-            {/* Right side - Language (hidden when menu closed) + Hamburger */}
-            <div className="flex items-center gap-4">
-              {/* Hamburger Button */}
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className={cn(
-                  'relative w-12 h-12 flex items-center justify-center',
-                  'rounded-lg transition-all duration-200',
-                  'text-white hover:bg-white/10',
-                  'z-[201]'
-                )}
-                aria-expanded={isMenuOpen}
-                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-              >
-                <svg
-                  className="absolute w-6 h-6 transition-all duration-300"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  style={{
-                    opacity: isMenuOpen ? 0 : 1,
-                    transform: isMenuOpen ? 'rotate(90deg) scale(0.5)' : 'rotate(0deg) scale(1)',
-                  }}
+              {/* Right side - Hamburger */}
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className={cn(
+                    'relative w-12 h-12 flex items-center justify-center',
+                    'rounded-lg transition-all duration-200',
+                    'text-white hover:bg-white/10',
+                    'z-[201]'
+                  )}
+                  aria-expanded={isMenuOpen}
+                  aria-label="Open menu"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <svg
-                  className="absolute w-6 h-6 transition-all duration-300"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  style={{
-                    opacity: isMenuOpen ? 1 : 0,
-                    transform: isMenuOpen ? 'rotate(0deg) scale(1)' : 'rotate(-90deg) scale(0.5)',
-                  }}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+                  <svg
+                    className="w-6 h-6"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
-        </nav>
-      </header>
+          </nav>
+        </header>
+      )}
 
       {/* Fullscreen Menu Overlay - GTA VI Style */}
       <div
         ref={menuOverlayRef}
-        className="fixed inset-0 z-[200] flex"
+        className="fixed inset-0 z-[300] flex"
         style={{
           background: 'rgba(5, 5, 8, 0.97)',
           backdropFilter: 'blur(20px)',
           clipPath: 'circle(0% at calc(100% - 48px) 32px)',
-          zIndex: 300,
+          pointerEvents: isMenuOpen ? 'auto' : 'none',
+          opacity: isMenuOpen ? 1 : 0,
         }}
       >
         {/* Left Panel - Full Height Image (50% width) */}
