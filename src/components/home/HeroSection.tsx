@@ -29,7 +29,16 @@ export function HeroSection() {
       const tl = gsap.timeline({
         ease: 'power2.out',
         scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
           scrub: 1,
+          onLeave: () => {
+            gsap.set([maskRef.current, contentRef.current], { autoAlpha: 0 })
+          },
+          onEnterBack: () => {
+            gsap.set([maskRef.current, contentRef.current], { autoAlpha: 1 })
+          },
         },
       })
 
@@ -73,7 +82,7 @@ export function HeroSection() {
   return (
     <section ref={sectionRef} className="relative h-[300vh]">
       {/* Masked layer — SVG logo mask that shrinks on scroll */}
-      <div ref={maskRef} className="hero-logo-mask fixed top-0 h-screen w-full">
+      <div ref={maskRef} className="hero-logo-mask fixed top-0 z-40 h-screen w-full">
         <div ref={heroKeyRef} className="fixed block h-screen w-full scale-125 overflow-hidden">
           {/* Foreground — transparent subject, fades on scroll */}
           <Image
@@ -102,7 +111,7 @@ export function HeroSection() {
       {/* Content overlay — fixed, centered */}
       <div
         ref={contentRef}
-        className="fixed inset-0 flex h-screen w-full flex-col items-center justify-center px-4 text-center"
+        className="fixed inset-0 z-50 flex h-screen w-full flex-col items-center justify-center px-4 text-center"
       >
         {/* Logo stack */}
         <div className="relative mb-8">
