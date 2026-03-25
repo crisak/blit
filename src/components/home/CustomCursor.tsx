@@ -2,7 +2,17 @@
 
 import { useEffect, useState } from 'react'
 
-const SPRAY_CURSOR_URL = '/images/gallery/utils/spray.png'
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
+const SPRAY_CURSOR_SVG = `data:image/svg+xml,${encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect x="20" y="8" width="24" height="48" rx="4" fill="%23e0e0e0" stroke="%23999" stroke-width="2"/>
+  <rect x="24" y="4" width="16" height="8" fill="%23ccc"/>
+  <circle cx="32" cy="20" r="6" fill="%23333"/>
+  <rect x="18" y="50" width="28" height="8" rx="2" fill="%23ddd"/>
+  <rect x="26" y="24" width="12" height="20" fill="%23f5f5f5"/>
+</svg>
+`)}`
 
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: -100, y: -100 })
@@ -11,6 +21,18 @@ export function CustomCursor() {
   const [hoverType, setHoverType] = useState<'link' | 'image' | 'button' | 'expand' | 'default'>(
     'default'
   )
+  const [cursorUrl, setCursorUrl] = useState<string>(SPRAY_CURSOR_SVG)
+
+  useEffect(() => {
+    const img = new window.Image()
+    img.onload = () => {
+      setCursorUrl(`${BASE_PATH}/images/gallery/utils/spray.png`)
+    }
+    img.onerror = () => {
+      console.warn('Failed to load spray cursor image, using SVG fallback')
+    }
+    img.src = `${BASE_PATH}/images/gallery/utils/spray.png`
+  }, [])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -92,16 +114,17 @@ export function CustomCursor() {
         }}
       >
         <img
-          src={SPRAY_CURSOR_URL}
+          src={cursorUrl}
           alt="Custom cursor"
           width={getCursorSize()}
           height={getCursorSize()}
           className="pointer-events-none"
           style={{
             transform: `rotate(${getRotation()}deg)`,
-            transition: 'transform 0.15s ease-out',
+            transition: 'transform 0.15s ease-out, src 0.2s ease-out',
             borderRadius: '50%',
           }}
+          draggable={false}
         />
       </div>
 
