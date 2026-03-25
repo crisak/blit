@@ -155,15 +155,14 @@ export function Header() {
             {/* Logo - Only visible when menu is closed */}
             {!isMenuOpen && (
               <Link href="/" className="flex items-center gap-2 group transition-all duration-300">
-                <span
-                  className={cn(
-                    'text-2xl font-extrabold font-heading tracking-tight',
-                    'text-white transition-all duration-300',
-                    'group-hover:text-gray-300 group-hover:tracking-wide'
-                  )}
-                >
-                  BLITO
-                </span>
+                <Image
+                  src="/images/logo/logo-white.svg"
+                  alt="BLITO Logo"
+                  width={40}
+                  height={44}
+                  className="h-10 w-auto brightness-0 invert transition-all duration-300 group-hover:opacity-80"
+                  priority
+                />
               </Link>
             )}
 
@@ -265,9 +264,14 @@ export function Header() {
 
           {/* Logo at top left of overlay */}
           <div className="absolute top-8 left-8 z-10">
-            <span className="text-3xl font-extrabold font-heading tracking-tight text-white">
-              BLITO
-            </span>
+            <Image
+              src="/images/logo/logo-white.svg"
+              alt="BLITO Logo"
+              width={50}
+              height={55}
+              className="h-12 w-auto brightness-0 invert"
+              priority
+            />
           </div>
         </div>
 
