@@ -93,7 +93,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Providers>
             <Header />
-            <main className="flex-1 pt-16">{children}</main>
+            <main className="flex-1">{children}</main>
             <Footer />
           </Providers>
         </NextIntlClientProvider>

@@ -1,30 +1,56 @@
 {
-  "name": "Blito",
-  "bio": "Soy un artista urbano apasionado por transformar espacios públicos en lienzos de expresión. Con más de 10 años de experiencia en el mundo del street art, he tenido el privilegio de crear murales en ciudades de toda España y Europa.",
-  "trajectory": "Comencé mi carrera artística en las calles de Madrid a principios de los 2010s. Lo que empezó como una forma de expresión juvenil se transformó en una vocación profesional que me ha llevado a participar en festivales de arte urbano internacionales, colaborar con marcas y organizaciones culturales, y dejar mi huella en más de 50 ciudades. Cada mural cuenta una historia diferente, pero todos comparten el mismo espíritu: conectar con la comunidad a través del color y la forma.",
-  "philosophy": "Creo que el arte debe ser accesible para todos. Las calles son la galería más democrática del mundo — no necesitas una entrada ni un código de vestimenta para disfrutar de un mural. Mi trabajo busca desafiar la percepción de los espacios urbanos, transformando muros grises en ventanas a mundos imaginarios. Cada pieza es una conversación entre el artista, el espacio y la comunidad que lo habita.",
+  "name": "Pablo Guerrero",
+  "artisticName": "Blito",
+  "bio": "El artista de arte callejero conocido como Blito cuenta con 10 años de trayectoria en el sector cultural y forma parte del colectivo Sabor Latino Crew. Actualmente lidera el proyecto 'Ilegales' en el barrio Olivos, Soacha, un espacio dedicado a la pedagogía, la entrega de insumos artísticos y la creación de murales de esperanza.",
+  "trajectory": "Blito es referente del arte callejero en Colombia, miembro de Sabor Latino Crew y líder del proyecto Ilegales en Soacha. Con más de 50 obras en su trayectoria, ha participado en festivales internacionales y collaboratedo con marcas reconocidas.",
+  "philosophy": "Creo que el arte debe ser accesible para todos. Las calles son la galería más democrática del mundo — no necesitas una entrada ni un código de vestimenta para disfrutar de un mural. Mi trabajo busca desafiar la percepción de los espacios urbanos, transformando muros grises en ventanas a mundos imaginarios.",
   "profileImage": {
     "url": "/images/gallery/banner/bg-form-contact.webp",
-    "alt": "Blito - Artista urbano",
+    "alt": "Blito - Artista urbano pintando",
     "width": 800,
     "height": 800
   },
   "socialLinks": [
     {
       "platform": "instagram",
-      "url": "https://instagram.com/blito",
+      "url": "https://www.instagram.com/blito.col/",
       "label": "Instagram"
     },
     {
-      "platform": "twitter",
-      "url": "https://twitter.com/blito",
-      "label": "Twitter / X"
+      "platform": "threads",
+      "url": "https://www.threads.net/@blito.col",
+      "label": "Threads"
     },
     {
-      "platform": "youtube",
-      "url": "https://youtube.com/@blito",
-      "label": "YouTube"
+      "platform": "facebook",
+      "url": "https://www.facebook.com/libreton94",
+      "label": "Facebook"
+    },
+    {
+      "platform": "whatsapp",
+      "url": "https://wa.me/573123574867",
+      "label": "WhatsApp"
     }
   ],
-  "email": "contact@blito.art"
+  "collectives": [
+    {
+      "name": "Ilegales",
+      "handle": "@ilegales.col",
+      "url": "https://www.instagram.com/ilegales.col/",
+      "website": "https://www.ilegales.co"
+    },
+    {
+      "name": "Sabor Latino Crew",
+      "handle": "@saborlatinocrewoficial",
+      "url": "https://www.instagram.com/saborlatinocrewoficial/"
+    },
+    {
+      "name": "Sabor Latino Callejero",
+      "handle": "@saborlatinocallejero",
+      "url": "https://www.instagram.com/saborlatinocallejero/"
+    }
+  ],
+  "commerce": "https://www.ilegales.co",
+  "email": "contact@blito.art",
+  "whatsapp": "+573123574867"
 }

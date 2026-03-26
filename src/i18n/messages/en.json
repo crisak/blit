@@ -1,31 +1,71 @@
 {
   "metadata": {
-    "title": "Blito - Urban Art",
-    "description": "Urban art portfolio. Explore murals, graffiti and street art works.",
-    "keywords": "urban art, graffiti, street art, murals, portfolio"
+    "title": "Blito - Street Art Colombia",
+    "description": "Street art portfolio. Explore murals, graffiti and street art works by artist Blito in Colombia.",
+    "keywords": "urban art, graffiti, street art, murals, portfolio, Blito, Colombia, street art"
   },
   "nav": {
     "home": "Home",
     "projects": "Projects",
     "about": "About Me",
-    "contact": "Contact"
+    "contact": "Contact",
+    "map": "Map"
   },
   "home": {
-    "title": "Urban Art",
-    "subtitle": "Explore my collection of street art works",
+    "title": "BLITO",
+    "subtitle": "Street Art · Colombia",
+    "tagline": "Street Art · Colombia",
+    "hero": {
+      "videoLoading": "Loading video..."
+    },
     "cta": {
+      "portfolio": "View portfolio",
+      "quote": "Request a quote",
       "gallery": "View Gallery",
-      "about": "About Me"
+      "about": "About Me",
+      "viewMap": "View full map",
+      "aboutWork": "Know my story"
     },
     "featured": {
-      "title": "Featured Works",
-      "subtitle": "A selection of my latest and most popular works",
-      "viewAll": "View full gallery"
+      "title": "Featured Projects",
+      "subtitle": "A selection of my most recent and representative works",
+      "viewAll": "View all projects"
+    },
+    "statistics": {
+      "title": "Blito in Numbers",
+      "years": "+10 years",
+      "murals": "+50 murals",
+      "cities": "X cities",
+      "sqm": "X sqm painted",
+      "yearsLabel": "years of experience",
+      "muralsLabel": "murals created",
+      "citiesLabel": "cities impacted",
+      "sqmLabel": "square meters painted"
     },
     "about": {
-      "title": "About Me",
-      "content": "I'm an urban artist passionate about transforming public spaces into canvases of expression. With over 10 years of experience in the street art world, I've had the privilege of creating murals in cities across Spain and Europe. My work explores the intersection between traditional graffiti art and modern techniques, always seeking to tell visual stories that resonate with the community.",
-      "cta": "Learn more"
+      "title": "About Blito",
+      "bio": "The street artist known as Blito has 10 years of trajectory in the cultural sector and is part of the Sabor Latino Crew collective. He currently leads the 'Ilegales' project in the Olivos neighborhood of Soacha, a space dedicated to pedagogy, artistic supplies delivery, and creating murals of hope.",
+      "cta": "Know my story"
+    },
+    "mapPreview": {
+      "title": "Footprint in Colombia",
+      "subtitle": "My art distributed across Colombian territory",
+      "departmentsStat": "departments impacted",
+      "cta": "View all artworks on the map"
+    },
+    "collaborations": {
+      "title": "Collaborations",
+      "subtitle": "They have trusted my work"
+    },
+    "collectives": {
+      "title": "Collectives & Links",
+      "ilegales": "Ilegales",
+      "saborLatino": "Sabor Latino Crew",
+      "saborCallejero": "Sabor Latino Callejero"
+    },
+    "whatsapp": {
+      "tooltip": "Write to me on WhatsApp",
+      "message": "Hi Blito! I'm interested in learning more about your work."
     }
   },
   "gallery": {

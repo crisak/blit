@@ -3,6 +3,8 @@
 Auto-generated from all feature plans. Last updated: 2026-03-24
 
 ## Active Technologies
+- TypeScript (Next.js 16 + React 19, strict mode) + GSAP (ScrollTrigger, Timeline), Framer Motion, Lenis, Tailwind CSS v4, next-intl, shadcn/ui (005-home-refactor)
+- N/A (mocked data via BFF pattern) (005-home-refactor)
 
 - (003-sync-doc-prd)
 
@@ -22,6 +24,7 @@ tests/
 : Follow standard conventions
 
 ## Recent Changes
+- 005-home-refactor: Added TypeScript (Next.js 16 + React 19, strict mode) + GSAP (ScrollTrigger, Timeline), Framer Motion, Lenis, Tailwind CSS v4, next-intl, shadcn/ui
 
 - 003-sync-doc-prd: Added
 

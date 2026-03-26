@@ -1,9 +1,16 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
-import { HeroSection } from '@/components/home/HeroSection'
-import { FeaturedWorks } from '@/components/home/FeaturedWorks'
-import { AboutPreview } from '@/components/home/AboutPreview'
+import {
+  HeroSection,
+  FeaturedWorks,
+  AboutPreview,
+  StatisticsSection,
+  MapPreview,
+  CollaborationsSection,
+  CollectivesSection,
+} from '@/components/home'
 import { HomeClientWrapper } from '@/components/home/HomeClientWrapper'
+import { CustomCursor, WhatsAppButton } from '@/components/home'
 
 // Configure as SSG (Static Site Generation)
 export const dynamic = 'force-static'
@@ -39,7 +46,7 @@ export async function generateMetadata({ params }: HomeProps): Promise<Metadata>
           url: '/images/gallery/banner/bg-form-contact.webp',
           width: 1200,
           height: 630,
-          alt: 'Street Art Portfolio',
+          alt: 'Blito - Street Art Portfolio',
         },
       ],
     },
@@ -58,14 +65,13 @@ export default async function Home({ params }: HomeProps) {
 
   const siteUrl = 'https://blito.art'
 
-  // JSON-LD Schema for SEO — WebSite + Person
   const jsonLd = [
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: 'Blito - Street Art Portfolio',
       description:
-        'Portfolio de arte urbano. Explora murales, graffiti y obras de street art.',
+        'Portfolio de arte urbano. Explora murales, graffiti y obras de street art del artista Blito en Colombia.',
       url: `${siteUrl}/${locale}`,
       inLanguage: locale,
       image: `${siteUrl}/images/gallery/banner/bg-form-contact.webp`,
@@ -74,15 +80,35 @@ export default async function Home({ params }: HomeProps) {
       '@context': 'https://schema.org',
       '@type': 'Person',
       name: 'Blito',
-      description: 'Artista urbano apasionado por transformar espacios públicos en lienzos de expresión.',
+      alternateName: 'Pablo Guerrero',
+      description:
+        'El artista de arte callejero conocido como Blito cuenta con 10 años de trayectoria en el sector cultural y forma parte del colectivo Sabor Latino Crew.',
       url: siteUrl,
       sameAs: [
-        'https://instagram.com/blito',
-        'https://twitter.com/blito',
-        'https://youtube.com/@blito',
+        'https://www.instagram.com/blito.col/',
+        'https://www.threads.net/@blito.col',
+        'https://www.facebook.com/libreton94',
+        'https://www.instagram.com/ilegales.col/',
+        'https://www.instagram.com/saborlatinocrewoficial/',
       ],
       jobTitle: 'Street Artist',
-      knowsAbout: ['Street Art', 'Graffiti', 'Murals', 'Urban Art'],
+      knowsAbout: ['Street Art', 'Graffiti', 'Murals', 'Urban Art', 'Colombia'],
+      areaServed: {
+        '@type': 'Country',
+        name: 'Colombia',
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'VisualArtwork',
+      creator: {
+        '@type': 'Person',
+        name: 'Blito',
+      },
+      locationCreated: {
+        '@type': 'Country',
+        name: 'Colombia',
+      },
     },
   ]
 
@@ -94,12 +120,22 @@ export default async function Home({ params }: HomeProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      {/* Persistent UI Elements */}
+      <CustomCursor />
+      <WhatsAppButton />
+
       {/* Client wrapper for splash screen */}
       <HomeClientWrapper>
         {/* All content is Server Components for SEO */}
-        <HeroSection />
-        <FeaturedWorks />
-        <AboutPreview />
+        <main>
+          <HeroSection />
+          <FeaturedWorks />
+          <StatisticsSection />
+          <AboutPreview />
+          <MapPreview />
+          <CollaborationsSection />
+          <CollectivesSection />
+        </main>
       </HomeClientWrapper>
     </>
   )
