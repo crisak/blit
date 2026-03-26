@@ -2,7 +2,6 @@ import { setRequestLocale, getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import {
   HeroSection,
-  ReelSection,
   FeaturedWorks,
   AboutPreview,
   StatisticsSection,
@@ -130,7 +129,6 @@ export default async function Home({ params }: HomeProps) {
         {/* All content is Server Components for SEO */}
         <main>
           <HeroSection />
-          <ReelSection />
           <FeaturedWorks />
           <StatisticsSection />
           <AboutPreview />

@@ -1,5 +1,4 @@
 export { HeroSection } from './HeroSection'
-export { ReelSection } from './ReelSection'
 export { FeaturedWorks } from './FeaturedWorks'
 export { AboutPreview } from './AboutPreview'
 export { HomeClientWrapper } from './HomeClientWrapper'

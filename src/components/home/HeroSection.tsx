@@ -74,18 +74,6 @@ export function HeroSection() {
           0.4
         )
       }
-
-      // Fade out mask's white background so it doesn't bleed over the next section
-      if (maskRef.current) {
-        tl.to(
-          maskRef.current,
-          {
-            opacity: 0,
-            duration: 0.2,
-          },
-          0.4
-        )
-      }
     }, sectionRef)
 
     return () => ctx.revert()
